@@ -24,17 +24,8 @@ public class bitmaps{
 			}
 		} while(reader.hasNextLine());
 
-		//System.out.println(stringArray);
 		System.out.println(onesZeros);
 
 		reader.close();
-
-		/*File bitmapFile = new File("bitmap.bmp");
-		Scanner reader = new Scanner(bitmapFile);
-		ArrayList<Character> onesZeros = new ArrayList<Character>();
-
-		while(reader.next() != null){
-
-		}*/
 	}
 }
