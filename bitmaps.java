@@ -1,3 +1,17 @@
+/*
+James Hahn
+
+This program takes input of any image of any size.
+It then proceeds to:
+	(1) Convert the image to black-white greyscale (only 1s and 0s) - stores in bitmap.bmp
+	(2) Convert the image to complete greyscale (doubles from 0.00-255.00) - stores in greyValues.bmp
+
+The person running the program must edit lines 81, 115, 185 with the correct filename that they are
+greyscaling.  The program will then open up an applet with that greyscaled image.  If the user wants
+to do black-white greyscale instead of complete greyscale, they must uncomment lines 166-172 and
+comment lines 176-177.
+*/
+
 import java.io.*;
 import javax.imageio.*;
 import java.util.*;
