@@ -2,6 +2,10 @@
 /* DO NOT EDIT */
 
 grant codeBase "file:\\C:\Users\kingsman142\Desktop\Projects" {
-  permission java.io.FilePermission "C:\\Users\\kingsman142\\Desktop\\Projects\\greyValues.bmp", "read, write";
+  permission java.io.FilePermission "C:\\Users\\kingsman142\\Desktop\\Projects\\greyValues.bmp", "read, write, delete";
+  permission java.io.FilePermission "C:\\Users\\kingsman142\\Desktop\\Projects\\output.jpg", "read, write, delete";
 };
 
+grant {
+    permission java.security.AllPermission "C:\\Users\\kingsman142\\Desktop\\Projects\\output.jpg", "read, write, delete";
+};

@@ -6,10 +6,12 @@ It then proceeds to:
 	(1) Convert the image to black-white greyscale (only 1s and 0s) - stores in bitmap.bmp
 	(2) Convert the image to complete greyscale (doubles from 0.00-255.00) - stores in greyValues.bmp
 
-The person running the program must edit lines 81, 115, 185 with the correct filename that they are
-greyscaling.  The program will then open up an applet with that greyscaled image.  If the user wants
-to do black-white greyscale instead of complete greyscale, they must uncomment lines 166-172 and
-comment lines 176-177.
+The program will open up an applet with thet greyscaled image that they entered into the scanner.
+If the user wants to do black-white greyscale instead of complete greyscale, they must uncomment lines 166-172
+and comment lines 176-177.
+
+PNG files were used as the output file type because they are lossless, therefore the quality will be
+higher than that of a JPG file.
 */
 
 import java.io.*;
@@ -22,12 +24,18 @@ import javax.swing.*;
 
 public class bitmaps extends JApplet{
 
+	//These two variables are used so the program can greyscale/binary(ize) any image...
+	//regardless of the filename and then the user decides if they want a greyscale (G)...
+	//or binary (B) image (this is stored in choiceString).
+	public static String[] nameString = {"leaf.jpg"};
+	public static String[] choiceString = {"G"};
+
 	public void init(int[][] numArray){
 		//Sets the default background color
 		getContentPane().setBackground(Color.red);
 	}
 
-	public static void convertImage(File image, String filename){
+	public static void convertImage(File image){
 		try{
 			//Takes in image (Buffered Image).
 			//Also creates several other variables for storying crucial information
@@ -61,7 +69,7 @@ public class bitmaps extends JApplet{
 					//Prints out the double value of the greyscale result
 					writerG.println(Double.toString(result));
 				}
-				//For debugging reasons, executes this so I can see the image in 1s and 0s
+				//Writes to the file what the bitline is
 				String line = "";
 				for(int i: bitLine){
 					line += Integer.toString(i);
@@ -78,11 +86,59 @@ public class bitmaps extends JApplet{
 		}
 	}
 
+	//Creates an image file and outputs it to GreyOutput.png for the user to use in the future
+	//GREYSCALE CONVERSION (0.0-255.0)
+	public static void createOutput(File image) throws Exception{
+		BufferedImage img = ImageIO.read(image);
+		int width = img.getWidth();
+		int height = img.getHeight();
+		BufferedImage img2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		double[] greys = getGreys();
+		int counter = 0;
+
+		for(int row = 0; row < height; row++){
+			for(int column = 0; column < width; column++){
+				float value = (float) (greys[counter]/255.0);
+				int valueInt = (int) greys[counter];
+				Color col = new Color(valueInt, valueInt, valueInt);
+				img2.setRGB(column, row, col.getRGB());
+				counter++;
+			}
+		}
+
+		ImageIO.write(img2, "png", new File("GreyOutput.png"));
+	}
+
+	//Creates an image file and outputs it to BinaryOutput.png for the user to use in the future
+	//BINARY CONVERSION (1s AND 0S)
+	public static void createOutputBW(File image) throws Exception{
+		BufferedImage img = ImageIO.read(image);
+		int width = img.getWidth();
+		int height = img.getHeight();
+		BufferedImage img2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		int[][] numArray = getBits();
+
+		for(int row = 0; row < height; row++){
+			for(int column = 0; column < width; column++){
+				int value = 0;
+				if(numArray[row][column] == 1){
+					value = 255;
+				} else if(numArray[row][column] == 0){
+					value = 0;
+				}
+				Color col = new Color(value, value, value);
+				img2.setRGB(column, row, col.getRGB());
+			}
+		}
+
+		ImageIO.write(img2, "png", new File("BinaryOutput.png"));
+	}
+
 	public static double[] getGreys(){
 		try{
 			//Takes in the image solely to find its height and width on an image by image basis...
 			//so I don't have to manually resize greyArray every time
-			BufferedImage img = ImageIO.read(new File("leaf.jpg"));
+			BufferedImage img = ImageIO.read(new File(nameString[0]));
 			int width = img.getWidth();
 			int height = img.getHeight();
 			double[] greyArray = new double[width*height];
@@ -116,7 +172,7 @@ public class bitmaps extends JApplet{
 		try{
 			//Takes in the image solely to find its height and width on an image by image basis...
 			//so I don't have to manually resize numArray every time
-			BufferedImage img = ImageIO.read(new File("leaf.jpg"));
+			BufferedImage img = ImageIO.read(new File(nameString[0]));
 			int width = img.getWidth();
 			int height = img.getHeight();
 			int[][] numArray = new int[height][width];
@@ -125,13 +181,12 @@ public class bitmaps extends JApplet{
 			File bitmap = new File("bitmap.bmp");
 			Scanner reader = new Scanner(bitmap);
 			int row = 0;
-			int column = 0;
 			String readStrings = "";
 
 			while(reader.hasNextLine()){
 				readStrings = reader.nextLine();
 
-				for(column = 0; column < readStrings.toCharArray().length; column++){
+				for(int column = 0; column < readStrings.toCharArray().length; column++){
 					numArray[row][column] = Character.getNumericValue(readStrings.toCharArray()[column]);
 				}
 
@@ -147,6 +202,7 @@ public class bitmaps extends JApplet{
 		return null;
 	}
 
+	//paint() is useless unless you use the appletviewer, which there is little reason to use.
 	public void paint(Graphics g){
 		super.paint(g);
 		g.setColor(Color.black);
@@ -163,18 +219,20 @@ public class bitmaps extends JApplet{
 
 		for(row = 0; row < numArray.length; row++){
 			for(column = 0; column < numArray[row].length; column++){
-				// UNCOMMENT THIS TO MAKE THE VALUES ONLY BLACK AND WHITE
-				// if(numArray[row][column] == 1){
-				// 	g.setColor(Color.white);
-				// } else if(numArray[row][column] == 0){
-				// 	g.setColor(Color.black);
-				// } else{
-				// 	g.setColor(Color.yellow);
-				// }
-
-				// BELOW 2 LINES CONVERT IT TO A COMPLETE GREYSCALE
-				int value = (int) greys[counter];
-				g.setColor(new Color(value, value, value));
+				// Change choiceString[0] to either "B" or "G" to switch from...
+				// Binary to Greyscale imaging
+				if(choiceString[0].equals("B")){
+					if(numArray[row][column] == 1){
+						g.setColor(Color.white);
+					} else if(numArray[row][column] == 0){
+						g.setColor(Color.black);
+					} else{
+						g.setColor(Color.yellow);
+					}
+				} else if(choiceString[0].equals("G")){
+					int value = (int) greys[counter];
+					g.setColor(new Color(value, value, value));
+				}
 
 				g.fillRect(column, row, 1, 1);
 				counter++;
@@ -182,10 +240,27 @@ public class bitmaps extends JApplet{
 		}
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception{
 		//Take this image and convert it to greyscale values and 1s and 0s.
 		//Store the values in greyValues.bmp and bitmap.bmp
 		//convertImage(new File("face.png"));
-		convertImage(new File("leaf.jpg"));
+		System.out.print("Filename: ");
+		Scanner sc = new Scanner(System.in);
+		nameString[0] = sc.next();
+		System.out.print("Black and white (B) or Greyscale (G): ");
+		choiceString[0] = sc.next();
+
+		convertImage(new File(nameString[0]));
+
+		if(choiceString[0].equals("B")){
+			createOutputBW(new File(nameString[0]));
+			System.out.println("Image stored in BinaryOutput.png!");
+		} else if(choiceString[0].equals("G")){
+			createOutput(new File(nameString[0]));
+			System.out.println("Image stored in GreyOutput.png!");
+		} else{
+			System.out.println("Error! Exiting!");
+			System.exit(3);
+		}
 	}
 }
