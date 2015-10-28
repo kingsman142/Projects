@@ -6,12 +6,14 @@ It then proceeds to:
 	(1) Convert the image to black-white greyscale (only 1s and 0s) - stores in bitmap.bmp
 	(2) Convert the image to complete greyscale (doubles from 0.00-255.00) - stores in greyValues.bmp
 
-The program will open up an applet with thet greyscaled image that they entered into the scanner.
-If the user wants to do black-white greyscale instead of complete greyscale, they must uncomment lines 166-172
-and comment lines 176-177.
+At run-time, the user enters the filename and whether they want black and white (B) which is stored in BinaryOutput.png
+or whether they want greyscale (G) which is stored in GreyOutput.png.
 
 PNG files were used as the output file type because they are lossless, therefore the quality will be
 higher than that of a JPG file.
+
+THIS PROGRAM DOES NOT COMPENSATE FOR THE USER IF THEY DO NOT ENTER THE FILE EXTENSION OR THEY DO NOT ENTER
+A FILENAME THAT EXISTS!
 */
 
 import java.io.*;
@@ -134,6 +136,7 @@ public class bitmaps extends JApplet{
 		ImageIO.write(img2, "png", new File("BinaryOutput.png"));
 	}
 
+	//Returns all the grey values from greyValues.bmp
 	public static double[] getGreys(){
 		try{
 			//Takes in the image solely to find its height and width on an image by image basis...
@@ -202,49 +205,54 @@ public class bitmaps extends JApplet{
 		return null;
 	}
 
-	//paint() is useless unless you use the appletviewer, which there is little reason to use.
-	public void paint(Graphics g){
-		super.paint(g);
-		g.setColor(Color.black);
+	/*
+	paint() is useless unless you use the appletviewer, which there is little reason to utilize.
+	However, if you want to experiment with the appletviewer, you are free to uncomment this function.
+	To use the appletviewer with this program, use "appletviewer bitmaps.html" in the command prompt.
+	*/
 
-		//Grab the two arrays...
-		//(1) numArray - only 1s and 0s
-		//(2) greys - actual grey values in double type from 0.00 to 255.00
-		int[][] numArray = getBits();
-		double[] greys = getGreys();
-
-		int row = 0;
-		int column = 0;
-		int counter = 0;
-
-		for(row = 0; row < numArray.length; row++){
-			for(column = 0; column < numArray[row].length; column++){
-				// Change choiceString[0] to either "B" or "G" to switch from...
-				// Binary to Greyscale imaging
-				if(choiceString[0].equals("B")){
-					if(numArray[row][column] == 1){
-						g.setColor(Color.white);
-					} else if(numArray[row][column] == 0){
-						g.setColor(Color.black);
-					} else{
-						g.setColor(Color.yellow);
-					}
-				} else if(choiceString[0].equals("G")){
-					int value = (int) greys[counter];
-					g.setColor(new Color(value, value, value));
-				}
-
-				g.fillRect(column, row, 1, 1);
-				counter++;
-			}
-		}
-	}
+	// public void paint(Graphics g){
+	// 	super.paint(g);
+	// 	g.setColor(Color.black);
+	//
+	// 	//Grab the two arrays...
+	// 	//(1) numArray - only 1s and 0s
+	// 	//(2) greys - actual grey values in double type from 0.00 to 255.00
+	// 	int[][] numArray = getBits();
+	// 	double[] greys = getGreys();
+	//
+	// 	int row = 0;
+	// 	int column = 0;
+	// 	int counter = 0;
+	//
+	// 	for(row = 0; row < numArray.length; row++){
+	// 		for(column = 0; column < numArray[row].length; column++){
+	// 			// Change choiceString[0] to either "B" or "G" to switch from...
+	// 			// Binary to Greyscale imaging
+	// 			if(choiceString[0].equals("B")){
+	// 				if(numArray[row][column] == 1){
+	// 					g.setColor(Color.white);
+	// 				} else if(numArray[row][column] == 0){
+	// 					g.setColor(Color.black);
+	// 				} else{
+	// 					g.setColor(Color.yellow);
+	// 				}
+	// 			} else if(choiceString[0].equals("G")){
+	// 				int value = (int) greys[counter];
+	// 				g.setColor(new Color(value, value, value));
+	// 			}
+	//
+	// 			g.fillRect(column, row, 1, 1);
+	// 			counter++;
+	// 		}
+	// 	}
+	// }
 
 	public static void main(String[] args) throws Exception{
-		//Take this image and convert it to greyscale values and 1s and 0s.
-		//Store the values in greyValues.bmp and bitmap.bmp
-		//convertImage(new File("face.png"));
-		System.out.print("Filename: ");
+		//Ask the user for the filename and which type of conversion they would like to make.
+		//Then the image is coverted with convertImage().
+		//And finally the outputted image is created depending on the conversion the user decided on.
+		System.out.print("Filename (with extension): ");
 		Scanner sc = new Scanner(System.in);
 		nameString[0] = sc.next();
 		System.out.print("Black and white (B) or Greyscale (G): ");
