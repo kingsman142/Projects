@@ -1,9 +1,10 @@
 import java.util.*;
 
 public class DiamondSquare{
-	public static final int length = 4;
+	public static final int LENGTH = 4;
+	public static final int MAX_SQUARES = (int) Math.pow(2, LENGTH*2);
 	public static Random randomNum = new Random();
-	public static double[][] heightmap = new double[(int) Math.pow(2, length)+1][(int) Math.pow(2, length)+1];
+	public static double[][] heightmap = new double[(int) Math.pow(2, LENGTH)+1][(int) Math.pow(2, LENGTH)+1];
 
 	public static void printHeightmap(){
 		for(int i = 0; i < heightmap.length; i++){
@@ -99,7 +100,7 @@ public class DiamondSquare{
 
 	public static void transformTerrain(int[] topLeft, int[] topRight, int[] bottomLeft, int[] bottomRight, int numIteration){
 		int numSquares = (int) Math.pow(2, numIteration+2)/4;
-		if(numSquares <= Math.pow(2, length*2)){
+		if(!fullHeightmap() && numSquares <= MAX_SQUARES){
 			//int numSquares = (int) Math.pow(2, numIteration+2)/4;
 			int squaresLength = (int) Math.pow(numSquares, .5);
 			int lengthRatio = (heightmap.length-1)/squaresLength;
