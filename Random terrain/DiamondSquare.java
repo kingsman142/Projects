@@ -25,14 +25,15 @@ public class DiamondSquare extends JFrame{
 			for(int j = 0; j < heightmap.length; j++){
 				float value = (float) heightmap[i][j];
 				boolean grey = true;
-				if(grey){
+				//if(grey){
 					g.setColor(new Color(value, value, value));
-				}
-				else{
-					if(heightmap[i][j] >= 0 && heightmap[i][j] < .33) g.setColor(new Color(44, 176, 55));
-					else if(heightmap[i][j] >= .33 && heightmap[i][j] < .66) g.setColor(new Color(133, 159, 168));
-					else g.setColor(new Color(255, 255, 255));
-				}
+					g.drawLine(i, j, i, j);
+				//}
+				//else{
+					if(heightmap[i][j] >= 0 && heightmap[i][j] < .33) g.setColor(new Color(44, 176, 55, 50));
+					else if(heightmap[i][j] >= .33 && heightmap[i][j] < .66) g.setColor(new Color(133, 159, 168, 50));
+					else g.setColor(new Color(255, 255, 255, 50));
+				//}
 				g.drawLine(i, j, i, j);
 			}
 		}
