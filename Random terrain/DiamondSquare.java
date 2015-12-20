@@ -45,10 +45,12 @@ public class DiamondSquare{
 		double bottomLeftValue = 0;
 		double bottomRightValue = 0;
 
+		//System.out.println("Center: x: " + center[0] + " , y: " + center[1]);
 		if(center[1] != 0 && center[0] != 0) topLeftValue = heightmap[center[1] - height/2][center[0] - width/2];
 		if(center[1] != 0 && center[0] != heightmap.length) topRightValue = heightmap[center[1] + height/2][center[0] - width/2];
-		System.out.println("BottomLeft: " + (center[0]) + " and " + (center[1]) + " , height: " + height + " , width: " + width);
+		//System.out.println("BottomRight: " + (center[0] + width/2) + " and " + (center[1] - height/2) + " , height: " + height + " , width: " + width);
 		if(center[1] != heightmap.length && center[0] != 0) bottomLeftValue = heightmap[center[1] - height/2][center[0] + width/2];
+		//System.out.println("BottomRight: " + (center[0] + width/2) + " and " + (center[1] + height/2) + " , height: " + height + " , width: " + width);
 		if(center[1] != heightmap.length && center[0] != heightmap.length) bottomRightValue = heightmap[center[1] + height/2][center[0] + width/2];
 
 		if(heightmap[center[1]][center[0]] == 0) heightmap[center[1]][center[0]] = averageValue(topLeftValue, topRightValue, bottomLeftValue, bottomRightValue) + plusMinus()*(randomNum.nextDouble()/Math.pow(2, numIteration));
@@ -61,7 +63,6 @@ public class DiamondSquare{
 		int top = center[1] - height/2;
 		int right = center[0] + width/2;
 		int bottom = center[1] + height/2;
-		//System.out.printf("Right: %d, Left: %d, Top: %d, Bottom: %d\n", right, left, top, bottom);
 
 		if(heightmap[1][left] == 0){
 			if(left == 0) heightmap[center[1]][left] = averageValue(0, heightmap[center[1] + height/2][left], heightmap[center[1] - height/2][left], heightmap[center[1]][center[0]]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration);
@@ -97,33 +98,30 @@ public class DiamondSquare{
 	}
 
 	public static void transformTerrain(int[] topLeft, int[] topRight, int[] bottomLeft, int[] bottomRight, int numIteration){
-		if(!fullHeightmap()){
-			int numSquares = (int) Math.pow(2, numIteration+2)/4;
+		int numSquares = (int) Math.pow(2, numIteration+2)/4;
+		if(numSquares <= Math.pow(2, length*2)){
+			//int numSquares = (int) Math.pow(2, numIteration+2)/4;
 			int squaresLength = (int) Math.pow(numSquares, .5);
 			int lengthRatio = (heightmap.length-1)/squaresLength;
 			int lengthRatio2 = (heightmap.length-1)/squaresLength / 2;
 			System.out.println("NumSquares: " + numSquares + " , SquaresLength: " + squaresLength);
-			System.out.println("Heightmap.length-1/squareslength: " + lengthRatio + " and " + lengthRatio2);
+			//System.out.println("Heightmap.length-1/squareslength: " + lengthRatio + " and " + lengthRatio2);
 			int width = topRight[1] - topLeft[1];
 			int height = bottomLeft[0] - topLeft[0];
-			System.out.println("Main: " + width + " and " + height);
 
-			for(int i = 0; i < squaresLength-1; i++){
-				for(int j = 0; j < squaresLength-1; j++){
-				int[] center = findMidpoint(lengthRatio, lengthRatio, new int[] {topLeft[0] + lengthRatio2*i + lengthRatio*i, topLeft[1] + lengthRatio2*j + lengthRatio2*j});
-				//displaceMidpoint(center, width, height, numIteration);
-				//squareStep(center, width, height, numIteration);
-				displaceMidpoint(center, lengthRatio, lengthRatio, numIteration+1);
-				System.out.printf("Center: x: %d, y: %d, value: %f\n", center[0], center[1], heightmap[center[0]][center[1]]);
-				squareStep(center, lengthRatio, lengthRatio, numIteration+1);
-				printHeightmap();
+			for(int i = 0; i < squaresLength; i++){
+				for(int j = 0; j < squaresLength; j++){
+					int[] center = findMidpoint(lengthRatio, lengthRatio, new int[] {topLeft[0] /*+ lengthRatio2*i*/ + lengthRatio*i, topLeft[1] /*+ lengthRatio2*j*/ + lengthRatio*j});
+					displaceMidpoint(center, lengthRatio, lengthRatio, numIteration+1);
+					//System.out.printf("Center: x: %d, y: %d, value: %f\n", center[0], center[1], heightmap[center[0]][center[1]]);
+					squareStep(center, lengthRatio, lengthRatio, numIteration+1);
+					//printHeightmap();
 				}
 			}
 
 			for(int i = 0; i < squaresLength; i++){
 				for(int j = 0; j < squaresLength; j++){
-					transformTerrain(topLeft, topRight, bottomLeft, bottomRight, numIteration+1);
-					//transformTerrain(new int[] {i*lengthRatio, j*lengthRatio}, new int[] {i*lengthRatio, (j+1)*lengthRatio}, new int[] {(i+1)*lengthRatio, j*lengthRatio}, new int[] {(i+1)*lengthRatio, (j+1)*lengthRatio}, numIteration+2);
+					transformTerrain(topLeft, topRight, bottomLeft, bottomRight, numIteration+2);
 				}
 			}
 		} else{
