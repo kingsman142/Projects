@@ -3,13 +3,15 @@ import java.awt.*;
 import javax.swing.*;
 
 public class DiamondSquare extends JFrame{
-	public static final int HEIGHT = 500;
-	public static final int WIDTH = 500;
+	//Set constants and global variables
 	public static final int LENGTH = 8;
 	public static final int MAX_SQUARES = (int) Math.pow(2, LENGTH*2);
+	public static final int HEIGHT = (int) Math.pow(2, LENGTH)+1;
+	public static final int WIDTH = (int) Math.pow(2, LENGTH)+1;
 	public static Random randomNum = new Random();
 	public static double[][] heightmap = new double[(int) Math.pow(2, LENGTH)+1][(int) Math.pow(2, LENGTH)+1];
 
+	//Set the JFrame properties
 	public DiamondSquare(){
 		setTitle("Diamond Square Bitmap");
 		setSize(WIDTH, HEIGHT);
@@ -17,11 +19,11 @@ public class DiamondSquare extends JFrame{
 		setVisible(true);
 	}
 
+	//Paint the heightmap to a JFrame for the user
 	public void paint(Graphics g){
 		for(int i = 0; i < heightmap.length; i++){
 			for(int j = 0; j < heightmap.length; j++){
 				float value = (float) heightmap[i][j];
-				//System.out.println(value);
 				boolean grey = true;
 				if(grey){
 					g.setColor(new Color(value, value, value));
@@ -36,6 +38,7 @@ public class DiamondSquare extends JFrame{
 		}
 	}
 
+	//Optionally print the heightmap to the console
 	public static void printHeightmap(){
 		for(int i = 0; i < heightmap.length; i++){
 			for(int j = 0; j < heightmap.length; j++){
@@ -46,6 +49,7 @@ public class DiamondSquare extends JFrame{
 		}
 	}
 
+	//Check to see if the heightmap is full
 	public static boolean fullHeightmap(){
 		for(int i = 0; i < heightmap.length; i++){
 			for(int j = 0; j < heightmap.length; j++){
@@ -55,21 +59,25 @@ public class DiamondSquare extends JFrame{
 		return true;
 	}
 
+	//Randomly decide where the displacement is added or subtracted
 	public static int plusMinus(){
 		double a = randomNum.nextDouble();
 		if(a > .5) return 1;
 		else return -1;
 	}
 
+	//Finds the average value for the midpoint of each square
 	public static double averageValue(double value1, double value2, double value3, double value4){
 		if(value1 == 0) return (value2+value3+value4)/3;
 		else return (value1+value2+value3+value4)/4;
 	}
 
+	//Find the midpoint of each square
 	public static int[] findMidpoint(int width, int height, int[] topLeft){
 		return new int[] {topLeft[0] + width/2, topLeft[1] + height/2};
 	}
 
+	//Displaces the midpoint of the square by a certain value
 	public static void displaceMidpoint(int[] center, int width, int height, int numIteration){
 		double topLeftValue = 0;
 		double topRightValue = 0;
@@ -86,6 +94,7 @@ public class DiamondSquare extends JFrame{
 		else if(heightmap[center[1]][center[0]] > 1) heightmap[center[1]][center[0]] = 1;
 	}
 
+	//Implements the diamond step of the diamond-square algorithm
 	public static void squareStep(int[] center, int width, int height, int numIteration){
 		int left = center[0] - width/2;
 		int top = center[1] - height/2;
@@ -125,6 +134,7 @@ public class DiamondSquare extends JFrame{
 		}
 	}
 
+	//Implements the square step of the algorithm
 	public static void transformTerrain(int[] topLeft, int[] topRight, int[] bottomLeft, int[] bottomRight, int numIteration){
 		int numSquares = (int) Math.pow(2, numIteration+2)/4;
 		if(!fullHeightmap() && numSquares <= MAX_SQUARES){
@@ -154,6 +164,7 @@ public class DiamondSquare extends JFrame{
 	}
 
 	public static void main(String[] args){
+		//Set the initial corner values of the heightmap to be the same
 		heightmap[0][0] = randomNum.nextDouble();
 		heightmap[heightmap.length-1][0] = heightmap[0][0];
 		heightmap[0][heightmap.length-1] = heightmap[0][0];
