@@ -27,7 +27,7 @@ public class bitmaps extends JApplet{
 		getContentPane().setBackground(Color.red);
 	}
 
-	public static void convertImage(File image, String filename){
+	public static void convertImage(File image){
 		try{
 			//Takes in image (Buffered Image).
 			//Also creates several other variables for storying crucial information
