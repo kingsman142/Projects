@@ -1,3 +1,18 @@
+/*
+James Hahn
+
+This program utilizes the Diamond-Square algorithm to create random terrain.  I chose this particular algorithm because
+after considering several others (i.e. "Sparks", Hills, Particle Deposition), this one looked random, while at the same
+time realistic without any artifical height placing by me.
+
+It outputs a bitmap to the user in bitmap.png so they can see what the last execution resulted in.  I strongly encourage
+the user to experiment with the SMOOTHNESS and LENGTH variables.
+
+Possible changes:
+- Scrolling terrain
+- More precise color values for heights in the output image
+*/
+
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;

@@ -1,3 +1,12 @@
+/*
+James Hahn
+
+This program outputs a two-dimensional random terrain to the user through a JFrame.  It utilizes the midpoint displacement algorithm
+as this was the first and one of the most popular algorithms for creating 2D terrain that I could find.
+
+For the user, I strongly encourage the user to experiment changing two variables: SMOOTHNESS and LENGTH, both global public constants.
+*/
+
 import java.util.Random;
 import java.awt.*;
 import javax.swing.*;
@@ -5,7 +14,7 @@ import javax.swing.*;
 public class RandomTerrain extends JFrame{
 	//Set the constants for the terrain
 	//WIDTH and HEIGHT are the size of the window
-	//SMOOTHNESS is a constant to determine how smooth the terrain is (bigger smoothness = smoother terrain)
+	//SMOOTHNESS is a constant to determine how smooth the terrain is (higher smoothness = smoother terrain)
 	//LENGTH is the power of two (2^LENGTH) length of the one-dimensional terrain array
 	public static final int HEIGHT = 750;
 	public static final int WIDTH = 500;
