@@ -7,7 +7,7 @@ import javax.imageio.*;
 
 public class DiamondSquare extends JFrame{
 	//Set constants and global variables
-	public static final int LENGTH = 11;
+	public static final int LENGTH = 9;
 	public static final int MAX_SQUARES = (int) Math.pow(4, LENGTH);
 	public static final int HEIGHT = (int) Math.pow(2, LENGTH)+20;
 	public static final int WIDTH = (int) Math.pow(2, LENGTH)+20;
