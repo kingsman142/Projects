@@ -5,7 +5,7 @@ import javax.swing.*;
 public class DiamondSquare extends JFrame{
 	//Set constants and global variables
 	public static final int LENGTH = 8;
-	public static final int MAX_SQUARES = (int) Math.pow(2, LENGTH*2);
+	public static final int MAX_SQUARES = (int) Math.pow(4, LENGTH);
 	public static final int HEIGHT = (int) Math.pow(2, LENGTH)+1;
 	public static final int WIDTH = (int) Math.pow(2, LENGTH)+1;
 	public static Random randomNum = new Random();
@@ -25,15 +25,11 @@ public class DiamondSquare extends JFrame{
 			for(int j = 0; j < heightmap.length; j++){
 				float value = (float) heightmap[i][j];
 				boolean grey = true;
-				//if(grey){
-					g.setColor(new Color(value, value, value));
-					g.drawLine(i, j, i, j);
-				//}
-				//else{
-					if(heightmap[i][j] >= 0 && heightmap[i][j] < .33) g.setColor(new Color(44, 176, 55, 50));
-					else if(heightmap[i][j] >= .33 && heightmap[i][j] < .66) g.setColor(new Color(133, 159, 168, 50));
-					else g.setColor(new Color(255, 255, 255, 50));
-				//}
+				g.setColor(new Color(value, value, value));
+				g.drawLine(i, j, i, j);
+				if(heightmap[i][j] >= 0 && heightmap[i][j] < .33) g.setColor(new Color(44, 176, 55, 50));
+				else if(heightmap[i][j] >= .33 && heightmap[i][j] < .66) g.setColor(new Color(133, 159, 168, 50));
+				else g.setColor(new Color(255, 255, 255, 50));
 				g.drawLine(i, j, i, j);
 			}
 		}
@@ -137,8 +133,12 @@ public class DiamondSquare extends JFrame{
 
 	//Implements the square step of the algorithm
 	public static void transformTerrain(int[] topLeft, int[] topRight, int[] bottomLeft, int[] bottomRight, int numIteration){
+		int currentLength = (int) Math.pow(2, numIteration);
 		int numSquares = (int) Math.pow(2, numIteration+2)/4;
+		//if(!fullHeightmap()) System.out.println("HEIGHT MAP NOT FULL");
+		if(currentLength <= MAX_SQUARES) System.out.println("NOT ENOUGH SQUARES, max squares: " + MAX_SQUARES + " , current squares: " + currentLength);
 		if(!fullHeightmap() && numSquares <= MAX_SQUARES){
+			System.out.println("Executing");
 			int squaresLength = (int) Math.pow(numSquares, .5);
 			int lengthRatio = (heightmap.length-1)/squaresLength;
 			int lengthRatio2 = (heightmap.length-1)/squaresLength / 2;
@@ -157,6 +157,8 @@ public class DiamondSquare extends JFrame{
 			for(int i = 0; i < squaresLength; i++){
 				for(int j = 0; j < squaresLength; j++){
 					transformTerrain(topLeft, topRight, bottomLeft, bottomRight, numIteration+2);
+					//System.out.println("Run");
+					//System.out.println("i: " + i + " , j: " + j);
 				}
 			}
 		} else{
