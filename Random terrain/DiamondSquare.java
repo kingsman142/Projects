@@ -4,10 +4,10 @@ import javax.swing.*;
 
 public class DiamondSquare extends JFrame{
 	//Set constants and global variables
-	public static final int LENGTH = 8;
+	public static final int LENGTH = 10;
 	public static final int MAX_SQUARES = (int) Math.pow(4, LENGTH);
-	public static final int HEIGHT = (int) Math.pow(2, LENGTH)+1;
-	public static final int WIDTH = (int) Math.pow(2, LENGTH)+1;
+	public static final int HEIGHT = (int) Math.pow(2, LENGTH)+100;
+	public static final int WIDTH = (int) Math.pow(2, LENGTH)+100;
 	public static Random randomNum = new Random();
 	public static double[][] heightmap = new double[(int) Math.pow(2, LENGTH)+1][(int) Math.pow(2, LENGTH)+1];
 
@@ -25,8 +25,16 @@ public class DiamondSquare extends JFrame{
 			for(int j = 0; j < heightmap.length; j++){
 				float value = (float) heightmap[i][j];
 				boolean grey = true;
+
+				//Draw the intial grey values
+				//Any grey value can be made by having r = g = b
 				g.setColor(new Color(value, value, value));
 				g.drawLine(i, j, i, j);
+
+				//All heights are double values from 0.00-1.00
+				//Low values ("Valleys"), 0.00-0.33, Green on heightmap
+				//Middle values ("Hills"), 0.33-0.66, Greyish on heightmap
+				//High values ("Mountains"), 0.66-1.00, White on heightmap
 				if(heightmap[i][j] >= 0 && heightmap[i][j] < .33) g.setColor(new Color(44, 176, 55, 50));
 				else if(heightmap[i][j] >= .33 && heightmap[i][j] < .66) g.setColor(new Color(133, 159, 168, 50));
 				else g.setColor(new Color(255, 255, 255, 50));
@@ -44,16 +52,6 @@ public class DiamondSquare extends JFrame{
 
 			System.out.println();
 		}
-	}
-
-	//Check to see if the heightmap is full
-	public static boolean fullHeightmap(){
-		for(int i = 0; i < heightmap.length; i++){
-			for(int j = 0; j < heightmap.length; j++){
-				if(heightmap[i][j] == 0.0) return false;
-			}
-		}
-		return true;
 	}
 
 	//Randomly decide where the displacement is added or subtracted
@@ -98,6 +96,7 @@ public class DiamondSquare extends JFrame{
 		int right = center[0] + width/2;
 		int bottom = center[1] + height/2;
 
+		//Displaces the point left of the center
 		if(heightmap[1][left] == 0){
 			if(left == 0) heightmap[center[1]][left] = averageValue(0, heightmap[center[1] + height/2][left], heightmap[center[1] - height/2][left], heightmap[center[1]][center[0]]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration);
 			else heightmap[center[1]][left] = averageValue(heightmap[center[1]][left - width/2], heightmap[center[1] + height/2][left], heightmap[center[1] - height/2][left], heightmap[center[1]][center[0]]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration/2);
@@ -106,6 +105,7 @@ public class DiamondSquare extends JFrame{
 			else if(heightmap[center[1]][left] > 1) heightmap[center[1]][left] = 1;
 		}
 
+		//Displaces theh point above the center
 		if(heightmap[top][center[0]] == 0){
 			if(top == 0) heightmap[top][center[0]] = averageValue(0, heightmap[center[1]][center[0]], heightmap[top][center[0] - width/2], heightmap[top][center[0] + width/2]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration);
 			else heightmap[top][center[0]] = averageValue(heightmap[top - height/2][center[0]], heightmap[center[1]][center[0]], heightmap[top][center[0] - width/2], heightmap[top][center[0] + width/2]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration/2);
@@ -114,6 +114,7 @@ public class DiamondSquare extends JFrame{
 			else if(heightmap[top][center[0]] > 1) heightmap[top][center[0]] = 1;
 		}
 
+		//Displaces the point right of the center
 		if(heightmap[center[1]][right] == 0){
 			if(right == heightmap.length-1) heightmap[center[1]][right] = averageValue(0, heightmap[center[1] + height/2][right], heightmap[center[1] - height/2][right], heightmap[center[1]][center[0]]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration);
 			else heightmap[center[1]][right] = averageValue(heightmap[center[1]][right + width/2], heightmap[center[1] + height/2][right], heightmap[center[1] - height/2][right], heightmap[center[1]][center[0]]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration/2);
@@ -122,6 +123,7 @@ public class DiamondSquare extends JFrame{
 			else if(heightmap[center[1]][right] > 1) heightmap[center[1]][right] = 1;
 		}
 
+		//Displaces the point below the center
 		if(heightmap[bottom][center[0]] == 0){
 			if(bottom == heightmap.length-1) heightmap[bottom][center[0]] = averageValue(0, heightmap[center[1]][center[0]], heightmap[bottom][center[0] - width/2], heightmap[bottom][center[0] + width/2]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration);
 			else heightmap[bottom][center[0]] = averageValue(heightmap[bottom - height/2][center[0]], heightmap[center[1]][center[0]], heightmap[bottom][center[0] - width/2], heightmap[bottom][center[0] + width/2]) + plusMinus()*randomNum.nextDouble()/Math.pow(2, numIteration/2);
@@ -133,18 +135,11 @@ public class DiamondSquare extends JFrame{
 
 	//Implements the square step of the algorithm
 	public static void transformTerrain(int[] topLeft, int[] topRight, int[] bottomLeft, int[] bottomRight, int numIteration){
-		int currentLength = (int) Math.pow(2, numIteration);
-		int numSquares = (int) Math.pow(2, numIteration+2)/4;
-		//if(!fullHeightmap()) System.out.println("HEIGHT MAP NOT FULL");
-		if(currentLength <= MAX_SQUARES) System.out.println("NOT ENOUGH SQUARES, max squares: " + MAX_SQUARES + " , current squares: " + currentLength);
-		if(!fullHeightmap() && numSquares <= MAX_SQUARES){
-			System.out.println("Executing");
-			int squaresLength = (int) Math.pow(numSquares, .5);
-			int lengthRatio = (heightmap.length-1)/squaresLength;
-			int lengthRatio2 = (heightmap.length-1)/squaresLength / 2;
-			System.out.println("NumSquares: " + numSquares + " , SquaresLength: " + squaresLength);
-			int width = topRight[1] - topLeft[1];
-			int height = bottomLeft[0] - topLeft[0];
+		for(numIteration = numIteration; numIteration/2 < LENGTH; numIteration+=2){
+			int numSquares = (int) Math.pow(2, numIteration+2)/4; //Number of squares in this iteration
+			int squaresLength = (int) Math.pow(numSquares, .5); //How long one side of the square matrix is (in a 16x16, it'd be 16)
+			int lengthRatio = (heightmap.length-1)/squaresLength; //Find the size of any given square
+			int lengthRatio2 = (heightmap.length-1)/squaresLength / 2; //FInd how far the center of a square is away from its corners
 
 			for(int i = 0; i < squaresLength; i++){
 				for(int j = 0; j < squaresLength; j++){
@@ -153,16 +148,6 @@ public class DiamondSquare extends JFrame{
 					squareStep(center, lengthRatio, lengthRatio, numIteration+1);
 				}
 			}
-
-			for(int i = 0; i < squaresLength; i++){
-				for(int j = 0; j < squaresLength; j++){
-					transformTerrain(topLeft, topRight, bottomLeft, bottomRight, numIteration+2);
-					//System.out.println("Run");
-					//System.out.println("i: " + i + " , j: " + j);
-				}
-			}
-		} else{
-			return;
 		}
 	}
 
@@ -174,8 +159,6 @@ public class DiamondSquare extends JFrame{
 		heightmap[heightmap.length-1][heightmap.length-1] = heightmap[0][0];
 
 		transformTerrain(new int[] {0, 0}, new int[] {0, heightmap.length}, new int[] {heightmap.length, 0}, new int[] {heightmap.length, heightmap.length}, 0);
-
-		//printHeightmap();
 
 		new DiamondSquare();
 	}
