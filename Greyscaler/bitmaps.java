@@ -1,4 +1,4 @@
-]/*
+/*
 James Hahn
 
 This program takes input of any image of any size.
