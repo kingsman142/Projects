@@ -1,3 +1,7 @@
+/*
+Server file for an IRC in progress.  Takes 1 command-line argument.
+*/
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -18,11 +22,12 @@ public class IRCServer extends Thread{
 
 	public static void main(String[] args){
 		try{
-			int portNumber = Integer.parseInt(args[0]);
-			DatagramSocket socket = new DatagramSocket(portNumber);
+			int port = Integer.parseInt(args[0]);
+			DatagramSocket socket = new DatagramSocket(port);
 			LocalDateTime time = LocalDateTime.now();
 
 			System.out.println("Starting up server...");
+			InetAddress groupAddress = InetAddress.getByName("24.239.250.160");
 
 			while(true){
 				time = LocalDateTime.now();
@@ -34,9 +39,7 @@ public class IRCServer extends Thread{
 				System.out.println("<" + time.toString() + "> " + receivedString);
 				if(receivedString.equals("Close Server")) break;
 
-				// InetAddress clientAddress = packet.getAddress();
-				// int port = packet.getPort();
-				// packet = new DatagramPacket(buf, buf.length, clientAddress, port);
+				packet = new DatagramPacket(buf, buf.length, groupAddress, port);
 			}
 
 			System.out.print("Closing down server...");
