@@ -32,10 +32,10 @@ public class DiamondSquare extends JFrame{
 
 	//Set the JFrame properties
 	public DiamondSquare(){
-		setTitle("Diamond Square Bitmap");
-		setSize(WIDTH, HEIGHT);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
+		//setTitle("Diamond Square Bitmap");
+		//setSize(WIDTH, HEIGHT);
+		//setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//setVisible(true);
 	}
 
 	//Paint the heightmap to a JFrame for the user
