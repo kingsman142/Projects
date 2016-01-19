@@ -87,10 +87,10 @@ mat4 projectionMatrix = mat4(1/(1.5*tan(fovX/2)), 0, 0, 0,
 							 0, 0, (farZ + nearZ)/(farZ - nearZ), 1.0,
 							 0, 0, (-2.0*farZ*nearZ)/(farZ - nearZ), 0);*/
 
-mat4 modelMatrix = myTranslatingMatrix /** myRotatingMatrix*/ * myScalingMatrix;
+mat4 modelMatrix = myTranslatingMatrix * myScalingMatrix;
 mat4 MVPMatrix = projectionMatrix * viewMatrix * modelMatrix;
 
-//Correct way to do it
+//Correct way to do it (technically, but doesn't work)
 //mat4 modelMatrix = myTranslatingMatrix * myRotatingMatrix * myScalingMatrix;
 //mat4 MVPMatrix = projectionMatrix * viewMatrix * modelMatrix;
 //vec4 transformedVertex = MVPMatrix * position;
@@ -98,7 +98,5 @@ mat4 MVPMatrix = projectionMatrix * viewMatrix * modelMatrix;
 void main(){
 	vColor = color;
 	
-	gl_Position = projectionMatrix * cameraMatrix * modelMatrix * position;					 
-	//gl_Position = projectionMatrix * cameraMatrix * modelMatrix * position;
-	//gl_Position = MVPMatrix * position;
+	gl_Position = projectionMatrix * cameraMatrix * modelMatrix * position;
 }

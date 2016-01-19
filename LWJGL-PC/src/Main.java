@@ -1,3 +1,9 @@
+/*
+ * James Hahn
+ * 
+ * This program utilizes LWJGL and my past DiamondSquare.java file to create a 3D randomly-generated terrain.
+ */
+
 import org.lwjgl.BufferUtils;
 import java.nio.*;
 
@@ -13,22 +19,28 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 
 public class Main{
+	//Window properties
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 768;
 	public static final String TITLE = "LWJGL";
 	public long window = NULL;
-	public final float SMOOTHNESS = 0.3f;
 	
+	public final float SMOOTHNESS = 0.2f; //Smoothness constant for the terrain
+	
+	//Callbacks for OpenGL to manage input
 	public GLFWKeyCallback keyCallback;
 	public GLFWCursorPosCallback cursorCallback;
 	public ShaderProgram shaderProgram;
 	
+	//Constants to determine the size in space of each vertex
 	public final int sizeOfFloat = Float.SIZE/Byte.SIZE;
 	public final int vertexSize = 4 * sizeOfFloat;
 	public final int colorSize = 4 * sizeOfFloat;
 	public final int stride = vertexSize + colorSize;
 	public final long offsetPosition = 0;
 	public final long offsetColor = 4 * sizeOfFloat;
+	
+	//Variables for properties of the camera
 	float[] cameraPosition = new float[3];
 	float fovX;
 	float fovY;
@@ -37,8 +49,11 @@ public class Main{
 	float lastX, lastY;
 	float offsetX, offsetY;
 	float cameraSpeed = 0.4f;
+	
+	//Terrain reference
 	DiamondSquare terrain;
 	
+	//ID values for each Vertex Array and Index Array (keep track of which one is which)
 	public int vaoID;
 	public int vboID;
 	public int eboID;
@@ -73,7 +88,7 @@ public class Main{
 		glfwSetCursorPosCallback(window, cursorCallback = new MouseHandler());
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LESS);
-		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); //Can be used to disable the cursor
 		
 		shaderProgram = new ShaderProgram();
         shaderProgram.attachVertexShader("VertexShader.glsl");
@@ -187,7 +202,7 @@ public class Main{
         //Dispose the program
 		shaderProgram.dispose();
 
-        // Dispose the vertex array
+        //Dispose the vertex array
         glBindVertexArray(0);
         glDeleteVertexArrays(vaoID);
 
@@ -232,7 +247,7 @@ public class Main{
 			glfwSwapBuffers(window);
 			
 			frames++;
-			//System.out.println("FPS: " + (float) (frames/now)); 
+			//System.out.println("FPS: " + (float) (frames/now));  //FPS Counter
 		}
 		
 		//Disposes of the window and terminate GLFW
@@ -241,24 +256,43 @@ public class Main{
 	}
 	
 	public float[] createTerrain(){
+		//Create the terrain object and generate terrain in real-time
 		terrain = new DiamondSquare();
 		terrain.main(null);
-		float[] vertices = new float[terrain.heightmap.length*terrain.heightmap.length*8];
-		float DFO = (float) terrain.heightmap.length / 2.0f; //Distance From Origin
-		int c = 0; //counter
+		
+		
+		float[] vertices = new float[terrain.heightmap.length*terrain.heightmap.length*8]; //Square the heightmap length, and multiply by 8 because each vertex has 8 properties
+		int c = 0; //counter to go through the array; independent of the terrain coordinates, i and j
+		
 		for(int i = 0; i < terrain.heightmap.length; i++){
 			for(int j = 1; j < terrain.heightmap.length; j++){
 				//Vertex coordinates
-				vertices[c] = (float) i * SMOOTHNESS;
-				vertices[c+1] = (float) terrain.heightmap[i][j] * 10f - 5f;
-				vertices[c+2] = (float) j * SMOOTHNESS;
-				vertices[c+3] = 1.0f;
+				vertices[c] = (float) i * SMOOTHNESS; //X
+				vertices[c+1] = (float) terrain.heightmap[i][j] * 10f - 5f; //Y
+				vertices[c+2] = (float) j * SMOOTHNESS; //Z
+				vertices[c+3] = 1.0f; //W, 0.0f for a velocity and 1.0f for a point in space
 				
 				//Vertex color values
-				vertices[c+4] = (float) terrain.heightmap[i][j];
-				vertices[c+5] = (float) terrain.heightmap[i][j];
-				vertices[c+6] = (float) terrain.heightmap[i][j];
-				vertices[c+7] = 1.0f;
+				float r = 0.0f;
+				float g = 0.0f;
+				float b = 0.0f;
+				if(terrain.heightmap[i][j] < .33f){
+					r = (float) (44.0/255.0);
+					g = (float) (176.0/255.0);
+					b = (float) (55.0/255.0);
+				} else if(terrain.heightmap[i][j] >= .33f && terrain.heightmap[i][j] < .66f){
+					r = (float) (133.0/255.0);
+					g = (float) (159.0/255.0);
+					b = (float) (168.0/255.0);
+				} else if(terrain.heightmap[i][j] >= .66f){
+					r = (float) (255.0/255.0);
+					g = (float) (255.0/255.0);
+					b = (float) (255.0/255.0);
+				}
+				vertices[c+4] = (float) terrain.heightmap[i][j]; //Replace with r to get colorful terrain
+				vertices[c+5] = (float) terrain.heightmap[i][j]; //Replace with g to get colorful terrain
+				vertices[c+6] = (float) terrain.heightmap[i][j]; //Replace with b to get colorful terrain
+				vertices[c+7] = 1.0f; //Opacity
 				c += 8;
 			}
 		}
@@ -268,7 +302,7 @@ public class Main{
 	
 	public int[] createIndices(){
 		int[] indices = new int[terrain.MAX_SQUARES*6];
-		int c = 0;
+		int c = 0; //Counter because each triangle needs to move 1 every time, so it has to be independent from i, which increments by 6
 		
 		for(int i = 0; i < indices.length-15360; i += 6){
 				//First triangle indices
@@ -280,7 +314,8 @@ public class Main{
 				indices[i+3] = c+1;
 				indices[i+4] = c+terrain.heightmap.length;
 				indices[i+5] = c+terrain.heightmap.length+1;
-
+				
+				//At the 506th point in every row, just go to the next row because it'll generate undesired results
 				if(c % 512 == 506) c += 6;
 				else c++;
 		}
@@ -289,6 +324,6 @@ public class Main{
 	}
 
 	public static void main(String[] args){
-		new Main().start();
+		new Main().start(); //Start the whole thing up
 	}
 }

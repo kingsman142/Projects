@@ -1,3 +1,9 @@
+/*
+ * James Hahn
+ * 
+ * This program imports all of the shader files.
+ */
+
 import java.io.*;
 
 public class FileUtil{

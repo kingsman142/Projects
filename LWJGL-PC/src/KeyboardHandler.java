@@ -1,3 +1,9 @@
+/*
+ * James Hahn
+ * 
+ * This program manages Keyboard Input.
+ */
+
 import org.lwjgl.glfw.*;
 
 import static org.lwjgl.glfw.GLFW.*;

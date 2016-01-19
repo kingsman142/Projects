@@ -1,3 +1,9 @@
+/*
+ * James Hahn
+ * 
+ * This program manages mouse input.
+ */
+
 import org.lwjgl.glfw.*;
 
 public class MouseHandler extends GLFWCursorPosCallback{
