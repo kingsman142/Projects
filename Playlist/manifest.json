@@ -3,7 +3,7 @@
 
   "name": "Playlist generator",
   "description": "This extension shows a Google Image search result for the current page",
-  "version": "1.5",
+  "version": "1.0",
 
   "browser_action": {
     "default_icon": "icon.png",
@@ -14,5 +14,6 @@
     "activeTab",
     "bookmarks",
     "https://ajax.googleapis.com/"
+    "https://www.googleapis.com/auth/youtube"
   ]
 }
