@@ -5,6 +5,8 @@
   "description": "This extension shows a Google Image search result for the current page",
   "version": "1.0",
 
+  "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'",
+
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html",
@@ -13,7 +15,6 @@
   "permissions": [
     "activeTab",
     "bookmarks",
-    "https://ajax.googleapis.com/"
-    "https://www.googleapis.com/auth/youtube"
+    "https://ajax.googleapis.com/auth/youtube"
   ]
 }
