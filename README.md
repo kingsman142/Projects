@@ -20,3 +20,6 @@ My 3D random terrain project; similar to the early stages of LWJGL-PC.  However,
 
 =====Videos=====
 My archive of videos from projects.  Currently, there is only one video, and it is for the LWJGL-PC project to show users how the program looks with multiple tests and a couple of modifications.
+
+=====Playlist=====
+I gained inspiration for this project from a problem of mine that I recognized: I had too many Youtube bookmarks of my favorite songs, yet no way to play them all efficiently; so, my solution was to make my own playlist so I can enjoy literally hundreds of hours of music (turns out I had ~1860 bookmarks, wow).  This program utilizes JavaScript to create a chrome extension, accessing a user's bookmarks on the current computer.  These bookmarks are then stored, and the Youtube API is used to create a Youtube playlist from those bookmarks so they can easily be listened to at any given time (still working on this part).  Future features may include access to the Spotify API in order to sync a user's Spotify songs and their Youtube bookmarks.
