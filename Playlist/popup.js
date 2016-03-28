@@ -1,5 +1,8 @@
 var books = [];
+var booksID = [];
 var folders = [];
+var playlistID;
+var channelID;
 
 function getBookmarks(){
     chrome.bookmarks.getTree(function(bookmarks){
@@ -11,87 +14,68 @@ function getBookmarks(){
         }
 
         console.log("books: " + books.length); //Print out the length of the books array
-        for(var i = 0; i < books.length; i++){ //Once all bookmarks are added to the books array, loop through all of them
-            //console.log("ITEM: " + books[i]);
-        }
 
         gapi.client.setApiKey('AIzaSyDUDozQF2xXJd7nybrEhVYgWUsSA4BREWw');
-        gapi.client.load('youtube', 'v3', function(){console.log("LOADED")});
-
-        var xhr = new XMLHttpRequest();
-
-        /*// Define some variables used to remember state.
-        var playlistId, channelId;
-
-        // After the API loads, call a function to enable the playlist creation form.
-        function handleAPILoaded() {
-          enableForm();
-        }
-
-        // Enable the form for creating a playlist.
-        function enableForm() {
-            $('#playlist-button').attr('disabled', false);*/
-
-
-        // Create a private playlist.
-        function createPlaylist() {
-            var request = gapi.client.youtube.playlists.insert({
-                part: 'snippet,status',
-                resource: {
-                  snippet: {
-                    title: 'Test Playlist',
-                    description: 'A private playlist created with the YouTube API'
-                  },
-                  status: {
-                    privacyStatus: 'private'
-                  }
-                }
+        gapi.client.load('youtube', 'v3', function(){
+            gapi.auth.authorize({
+                client_id: "323168009404-b01satic25ad9nun2e2gd68e2j16u5oe.apps.googleusercontent.com",
+                immediate: true,
+                scope: "https://www.googleapis.com/auth/youtube"
+            }, function(){
+                createPlaylist();
             });
-            request.execute(function(response) {
-                var result = response.result;
-                if (result) {
-                  playlistId = result.id;
-                  $('#playlist-id').val(playlistId);
-                  $('#playlist-title').html(result.snippet.title);
-                  $('#playlist-description').html(result.snippet.description);
-                } else {
-                  $('#status').html('Could not create playlist');
-                }
-            });
-        }
+        });
+    });
+}
 
-        /*// Add a video ID specified in the form to the playlist.
-        function addVideoToPlaylist() {
-            addToPlaylist($('#video-id').val());
-        }
-
-        // Add a video to a playlist. The "startPos" and "endPos" values let you
-        // start and stop the video at specific times when the video is played as
-        // part of the playlist. However, these values are not set in this example.
-        function addToPlaylist(id, startPos, endPos) {
-            var details = {
-                videoId: id,
-                kind: 'youtube#video'
+// Create a private playlist.
+function createPlaylist() {
+    var request = gapi.client.youtube.playlists.insert({
+        part: 'snippet',
+        resource: {
+            snippet: {
+                title: 'Test Playlist',
+                description: 'A playlist storing your favorite songs! \nSize: ' + books.length,
+                channelId: 'UC5LO-02iXbZgobVMzETTasg'
             }
-            if (startPos != undefined) {
-                details['startAt'] = startPos;
+        }
+    });
+    request.execute(function(response) {
+        var result = response.result;
+        if (result) {
+            playlistID = result.id;
+            for(var k = 0; k < booksID.length; k++){
+                addToPlaylist(booksID[k], undefined, undefined);
             }
-            if (endPos != undefined) {
-                details['endAt'] = endPos;
-            }
-            var request = gapi.client.youtube.playlistItems.insert({
-                part: 'snippet',
-                resource: {
-                  snippet: {
-                    playlistId: playlistId,
-                    resourceId: details
-                  }
+            console.log("PLAYLIST ID: " + playlistID);
+        }
+    });
+}
+
+// Add a video to a playlist. The "startPos" and "endPos" values let you
+// start and stop the video at specific times when the video is played as
+// part of the playlist.
+function addToPlaylist(id, startPos, endPos) {
+    console.log("adding id: " + id);
+    var details = {
+        videoId: id,
+        kind: 'youtube#video'
+    }
+    if (startPos != undefined) {
+        details['startAt'] = startPos;
+    }
+    if (endPos != undefined) {
+        details['endAt'] = endPos;
+    }
+    var request = gapi.client.youtube.playlistItems.insert({
+        part: 'snippet',
+            snippet: {
+                playlistId: playlistID,
+                resourceId: {
+                    kind: 'youtube#video',
+                    videoId: id
                 }
-            });
-            request.execute(function(response) {
-                $('#status').html('<pre>' + JSON.stringify(response.result) + '</pre>');
-            });
-        }*/
+            }
     });
 }
 
@@ -111,11 +95,25 @@ function search_for_title(bookmarks, title, parent){
         var filled = books.length;
 
         for(var i = 0; i < bookmarks.length; i++){
-            if(findWord("youtube.com", bookmarks[i].url)) books[filled++] = bookmarks[i].title; //Assign all the bookmarks into the books array
+            if(findWord("youtube.com", bookmarks[i].url)){
+                books[filled] = bookmarks[i].title; //Assign all the bookmarks into the books array
+                booksID[filled++] = findVideoID(bookmarks[i].url); //Find the video ID of the video and add it to the bookmarks ID array
+            }
         }
 
         return null;
     }
+}
+
+function findVideoID(url){
+    var startSearch = false;
+    var videoID = "";
+    for(var i = 0; i < url.length; i++){
+        if(startSearch) videoID += url[i];
+
+        if(url[i] == '=') startSearch = true;
+    }
+    return videoID;
 }
 
 function findWord(word, url){
