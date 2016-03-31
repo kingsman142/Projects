@@ -3,6 +3,7 @@ var booksID = [];
 var folders = [];
 var playlistID;
 var channelID;
+var playlistName = "Testing"
 
 function getBookmarks(){
     chrome.bookmarks.getTree(function(bookmarks){
@@ -20,7 +21,7 @@ function getBookmarks(){
             gapi.auth.authorize({
                 client_id: "323168009404-b01satic25ad9nun2e2gd68e2j16u5oe.apps.googleusercontent.com",
                 immediate: true,
-                scope: "https://www.googleapis.com/auth/youtube"
+                scope: "https://www.googleapis.com/auth/youtube.force-ssl"
             }, function(){
                 createPlaylist();
             });
@@ -28,26 +29,31 @@ function getBookmarks(){
     });
 }
 
-// Create a private playlist.
+// Create a public playlist.
 function createPlaylist() {
     var request = gapi.client.youtube.playlists.insert({
-        part: 'snippet',
-        resource: {
-            snippet: {
-                title: 'Test Playlist',
-                description: 'A playlist storing your favorite songs! \nSize: ' + books.length,
-                channelId: 'UC5LO-02iXbZgobVMzETTasg'
+        part: 'snippet,status',
+        resource:{
+            snippet:{
+                title: playlistName,
+                description: 'A playlist storing your favorite songs! \nSize: ' + booksID.length,
+            },
+            status:{
+                privacyStatus: 'public'
             }
         }
     });
     request.execute(function(response) {
         var result = response.result;
-        if (result) {
+        var details = {
+            kind: 'youtube#video',
+            videoId: 'OcE8YWdGtnI'
+        }
+        if(result){
             playlistID = result.id;
-            for(var k = 0; k < booksID.length; k++){
-                addToPlaylist(booksID[k], undefined, undefined);
-            }
             console.log("PLAYLIST ID: " + playlistID);
+            //for(var k = 0; k < booksID.length; k++){
+            addToPlaylist(booksID[0], undefined, undefined, 0, 0);
         }
     });
 }
@@ -55,8 +61,7 @@ function createPlaylist() {
 // Add a video to a playlist. The "startPos" and "endPos" values let you
 // start and stop the video at specific times when the video is played as
 // part of the playlist.
-function addToPlaylist(id, startPos, endPos) {
-    console.log("adding id: " + id);
+function addToPlaylist(id, startPos, endPos, k, failures) {
     var details = {
         videoId: id,
         kind: 'youtube#video'
@@ -67,16 +72,34 @@ function addToPlaylist(id, startPos, endPos) {
     if (endPos != undefined) {
         details['endAt'] = endPos;
     }
-    var request = gapi.client.youtube.playlistItems.insert({
-        part: 'snippet',
-            snippet: {
-                playlistId: playlistID,
-                resourceId: {
-                    kind: 'youtube#video',
-                    videoId: id
+    var keepGoing = false;
+    var request = undefined;
+    do{
+        request = gapi.client.youtube.playlistItems.insert({
+            part: 'snippet',
+            resource:{
+                snippet:{
+                    playlistId: playlistID,
+                    resourceId:{
+                        kind: 'youtube#video',
+                        videoId: id
+                    }
                 }
             }
-    });
+        });
+        if(request != undefined){
+            request.execute(function(response){
+                //console.log("object: " + response['kind'] + ", adding id: " + id + " to playlist " + playlistID);
+                //console.log(response);
+                //console.log(response.code);
+                if(response.code == 404 || response.code == 403) failures++;
+                var successRate = ((k-failures)/k)*100.0;
+                var failureRate = (failures/k)*100.0;
+                console.log(k + " / " + booksID.length + " completed: " + (k-failures) + "/" + k + " successes (" + successRate + ") and " + failures + "/" + k + " failures (" + failureRate + ")");
+                if(k < booksID.length-1) addToPlaylist(booksID[k+1], undefined, undefined, k+1, failures);
+            });
+        }
+    } while(keepGoing);
 }
 
 function search_for_title(bookmarks, title, parent){
@@ -108,10 +131,10 @@ function search_for_title(bookmarks, title, parent){
 function findVideoID(url){
     var startSearch = false;
     var videoID = "";
-    for(var i = 0; i < url.length; i++){
+    for(var i = 1; i < url.length; i++){
         if(startSearch) videoID += url[i];
 
-        if(url[i] == '=') startSearch = true;
+        if(url[i] == '=' && url[i-1] == 'v') startSearch = true;
     }
     return videoID;
 }
