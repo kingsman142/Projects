@@ -1,3 +1,22 @@
+/*
+James Hahn, 2016
+
+I gained inspiration for this project from a problem of mine that I recognized:
+I had too many Youtube bookmarks of my favorite songs, yet no way to play them all efficiently;
+so, my solution was to make my own playlist so I can enjoy literally hundreds of hours of music (turns out I had ~1860 bookmarks, wow).
+This program utilizes JavaScript to create a chrome extension, accessing a user's
+bookmarks on the current computer. These bookmarks are then stored, and the Youtube API
+is used to create a Youtube playlist from those bookmarks so they can easily be listened
+to at any given time (still working on this part). Future features may include access to
+the Spotify API in order to sync a user's Spotify songs and their Youtube bookmarks.
+
+Future ideas:
+Make a modified playlistName/Allow the user to specify the playlistName
+Updated GUI so it looks pretty
+Hook up to Spotify API
+Increase efficiency
+*/
+
 var books = [];
 var booksID = [];
 var folders = [];
