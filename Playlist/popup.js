@@ -5,6 +5,7 @@ var playlistID;
 var channelID;
 var playlistName = "Testing"
 
+//Main function to run the program
 function getBookmarks(){
     chrome.bookmarks.getTree(function(bookmarks){
         var input = window.document.getElementById("foldersForm").value;
@@ -29,8 +30,9 @@ function getBookmarks(){
     });
 }
 
-// Create a public playlist.
+//Create a public playlist.
 function createPlaylist() {
+    //Create the XHR (XMLHttpRequest) for the call
     var request = gapi.client.youtube.playlists.insert({
         part: 'snippet,status',
         resource:{
@@ -43,6 +45,7 @@ function createPlaylist() {
             }
         }
     });
+    //Perform the XHR from above
     request.execute(function(response) {
         var result = response.result;
         var details = {
@@ -52,15 +55,17 @@ function createPlaylist() {
         if(result){
             playlistID = result.id;
             console.log("PLAYLIST ID: " + playlistID);
-            //for(var k = 0; k < booksID.length; k++){
+            //For right now, I am trying to limit asynchronous calls because I found that
+            //many XHRs fail and my program becomes wonky.  So, I just decided to make recursive calls.
+            //It takes approximately 12 minutes to add 1877 songs to a playlist.
             addToPlaylist(booksID[0], undefined, undefined, 0, 0);
         }
     });
 }
 
-// Add a video to a playlist. The "startPos" and "endPos" values let you
-// start and stop the video at specific times when the video is played as
-// part of the playlist.
+//Add a video to a playlist. The "startPos" and "endPos" values let you
+//start and stop the video at specific times when the video is played as
+//part of the playlist.
 function addToPlaylist(id, startPos, endPos, k, failures) {
     var details = {
         videoId: id,
@@ -102,6 +107,8 @@ function addToPlaylist(id, startPos, endPos, k, failures) {
     } while(keepGoing);
 }
 
+//Traverses entire list of bookmarks to find all the folders containing music (specified by user)
+//and then adds every Youtube bookmark to the books array
 function search_for_title(bookmarks, title, parent){
     if(parent == null){ //First find the parent folder
         for(var i = 0; i < bookmarks.length; i++){ //Loop through all bookmarks
@@ -128,6 +135,7 @@ function search_for_title(bookmarks, title, parent){
     }
 }
 
+//Takes a Youtube url and returns the video ID.
 function findVideoID(url){
     var startSearch = false;
     var videoID = "";
@@ -139,6 +147,8 @@ function findVideoID(url){
     return videoID;
 }
 
+//Main purpose is to take a url and try to find
+//the word "youtube" in it to make sure it's a youtube video
 function findWord(word, url){
     var matches = 0;
 
@@ -158,6 +168,9 @@ function findWord(word, url){
     return false;
 }
 
+//Take the input of the folders from the HTML form
+//and parse every folder name, which is separated
+//by a comma.
 function parseFolders(names){
     var currName = "";
     var size = 0;
@@ -174,6 +187,8 @@ function parseFolders(names){
     folders[size] = currName;
 }
 
+//Calls the main program into action once the window loads and the user
+//clicks the "Get Bookmarks!" button
 window.onload = function(){
     window.document.getElementById("bookmarksButton").addEventListener('click', getBookmarks, true);
 }
