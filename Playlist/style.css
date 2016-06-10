@@ -1,0 +1,66 @@
+body {
+	/*font-family: "extravaganzza", "Museo Sans", "Segoe UI", "Lucida Grande", Tahoma, sans-serif;*/
+	font-size: 100%;
+	width: 225px;
+	/*background-color: #80bfff;*/
+	/*background-color: #29343B;*/
+	background-color: #4085ED;
+}
+
+@font-face{
+	font-family: extravaganzza;
+	src: url(extravaganzza.ttf);
+}
+
+/*#status {
+	/* avoid an excessively wide status text
+	white-space: pre;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 400px;
+}*/
+
+#bookmarksButton{
+	margin: auto;
+	width: 93vw;
+}
+
+#foldersForm{
+	width: 91.4vw;
+}
+
+#foldersText{
+	font-family: "extravaganzza", "Museo Sans", "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+	src: url("extravaganzza.ttf");
+	margin: auto;
+}
+
+.ph-btn-red:hover, .ph-btn-red:focus, .ph-btn-red:active {
+    background: none repeat scroll 0 0 #EB4848 !important;
+    border-color: #E83131 !important;
+}
+
+.ph-button {
+    border-style: solid;
+    border-width: 0px 0px 3px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+    color: #FFFFFF;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-style: normal;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    transition: all 200ms ease-in-out 0s;
+    white-space: nowrap;
+    font-family: "Gotham Rounded A","Gotham Rounded B",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    padding: 8px 39px 8px;
+    font-size: 18px;
+}
+.ph-btn-red {
+    background-color: #ED5A5A !important;
+    border-color: #EA4343 !important;
+}

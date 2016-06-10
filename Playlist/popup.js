@@ -22,13 +22,73 @@ var booksID = [];
 var folders = [];
 var playlistID;
 var channelID;
-var playlistName = "Testing"
+var playlistName = "Testing";
+
+var current = 0;
+var end = 0;
+
+function recursePlaylistExec(tabs){
+    chrome.tabs.executeScript(tabs[0].id, {
+        code: "var current = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuenow'); var end = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuemax'); [current,end]"
+    }, function(results){
+        try{
+            current = results[0][0];
+            end = results[0][1];
+            console.log("current: " + current + "     ;     finish: " + end + "     ;     error: " + error);
+            if(current == end && end != 0 && current != 0){
+                current = 0;
+                end = 0;
+                newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
+                console.log("STARTING NEW SONG: " + current + " and " + end + "     ;     new song: " + newURL);
+                chrome.tabs.update(tabs[0].id, {
+                    url: newURL
+                }, function(){
+                    setTimeout(function(){ current = 0; end = 0; recursePlaylistExec(tabs); }, 1000);
+                });
+            } else{
+                setTimeout(function(){ console.log("Recursing"); recursePlaylistExec(tabs); }, 1000);
+            }
+        } catch(e){
+            current = 0;
+            end = 0;
+            newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
+            console.log("STARTING NEW SONG AFTER ERROR: " + current + " and " + end + "     ;     new song: " + newURL);
+            chrome.tabs.update(tabs[0].id, {
+                url: newURL
+            }, function(){
+                setTimeout(function(){ current = 0; end = 0; recursePlaylistExec(tabs); }, 1000);
+            });
+        }
+    });
+}
+
+function fetchRandomSong(){
+    var rand = Math.floor(Math.random() * booksID.length);
+    return booksID[rand];
+}
 
 //Main function to run the program
 function getBookmarks(){
     chrome.bookmarks.getTree(function(bookmarks){
         var input = window.document.getElementById("foldersForm").value;
         parseFolders(input);
+
+        chrome.windows.create({
+            url: "https://www.youtube.com/watch?v=NCFg7G63KgI",
+            type: 'popup'
+        }, function(window){
+            chrome.tabs.query({
+                windowId: window.id
+            }, function(tabs){
+                newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
+                console.log("NEW SONG: " + newURL);
+                chrome.tabs.update(tabs[0].id, {
+                    url: newURL
+                }, function(){
+                    recursePlaylistExec(tabs);
+                });
+            });
+        });
 
         for(var j = 0; j < folders.length; j++){
             search_for_title(bookmarks, folders[j], null); //Collect all bookmarks in the "Music" folder and put them into the books array
@@ -43,7 +103,7 @@ function getBookmarks(){
                 immediate: true,
                 scope: "https://www.googleapis.com/auth/youtube.force-ssl"
             }, function(){
-                createPlaylist();
+                //createPlaylist();
             });
         });
     });
