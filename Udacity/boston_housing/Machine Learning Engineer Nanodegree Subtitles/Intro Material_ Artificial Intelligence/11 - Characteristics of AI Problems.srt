@@ -1,0 +1,38 @@
+0:00:00.350,0:00:03.060
+I hope our discussion of the big problems in AI didn't scare you off,
+
+0:00:04.590,0:00:06.396
+let's bring the discussion down, closer to work.
+
+0:00:06.396,0:00:11.467
+And talk about [UNKNOWN] fundamental characteristics of AI problems. Number one,
+
+0:00:11.467,0:00:16.600
+in many AI problems, data arrives incrementally not all the data comes
+
+0:00:16.600,0:00:22.330
+right at the beginning. Number two, problems often have a recurring pattern,
+
+0:00:22.330,0:00:26.860
+the same kinds of problems occur again and again. Number three,
+
+0:00:26.860,0:00:31.500
+problems occur at many different levels of abstraction. Problem number four,
+
+0:00:31.500,0:00:35.720
+many interesting AI problems are computationally intractable. Number five,
+
+0:00:35.720,0:00:39.630
+the world is dynamic, it's constantly changing but knowledge of
+
+0:00:39.630,0:00:44.960
+the world is relative to static. Number six, the world is open ended but
+
+0:00:44.960,0:00:49.110
+knowledge of the world is relatively limited. So, the question then becomes,
+
+0:00:49.110,0:00:52.300
+how can we design air agents that can address air problems with
+
+0:00:52.300,0:00:56.060
+these characteristics, those are the challenges we'll discuss in this course

@@ -1,0 +1,11 @@
+0:00:00.570,0:00:04.790
+Let us do an exercise together. Once again, we have the four quadrants shown
+
+0:00:04.790,0:00:08.830
+here, and at the top left are four compression artifacts. I'm sure you're
+
+0:00:08.830,0:00:14.380
+familiar with all four of them. C-3PO is a fictitious artifact from Star Wars.
+
+0:00:14.380,0:00:18.940
+Can we put these four artifacts in the quadrants to which they best belong?

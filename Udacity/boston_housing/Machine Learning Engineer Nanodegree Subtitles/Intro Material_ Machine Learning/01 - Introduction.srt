@@ -1,0 +1,191 @@
+0:00:00.670,0:00:01.710
+Hi, my name is Sebastian Thrun.
+
+0:00:01.710,0:00:03.120
+>> My name is Katie Malone.
+
+0:00:03.120,0:00:05.770
+>> And this is the machine learning class here at Udacity for
+
+0:00:05.770,0:00:07.050
+everybody to learn machine learning.
+
+0:00:07.050,0:00:09.320
+I am a research professor at Standford.
+
+0:00:09.320,0:00:10.660
+I am the founder of Udacity and
+
+0:00:10.660,0:00:15.290
+I also did things like Urban Self Learning Car, The DARPA Self Driving Car,
+
+0:00:15.290,0:00:20.300
+Challenge Ways, Google Street View, Google Glass, Google X.
+
+0:00:20.300,0:00:23.760
+And the secret behind my work is, all we do is to machine learning.
+
+0:00:23.760,0:00:27.000
+Machine learning is the core of what I do and machine learning enables me
+
+0:00:27.000,0:00:29.390
+to build amazing products and amazing user experiences.
+
+0:00:29.390,0:00:32.720
+>> I'm a physicist by training so I have a little bit of a different background.
+
+0:00:32.720,0:00:34.721
+But in physics we use machine learning all the time too.
+
+0:00:34.721,0:00:37.852
+And so what we do, is we start with gigantic data sets of lots of
+
+0:00:37.852,0:00:40.400
+particles that we create in our detector.
+
+0:00:40.400,0:00:43.313
+And we use machine learning to comb through those huge data sets and
+
+0:00:43.313,0:00:44.571
+to find the, the one event.
+
+0:00:44.571,0:00:47.019
+Or the, the ten events out of the millions and
+
+0:00:47.019,0:00:49.480
+billions that help us win Nobel prizes.
+
+0:00:49.480,0:00:52.120
+>> And doing good machine learning is just like making great wine.
+
+0:00:52.120,0:00:53.800
+So I have a bottle of wine here from Italy.
+
+0:00:55.230,0:00:56.800
+the, the, the analogy goes as follows.
+
+0:00:56.800,0:01:00.170
+If you want to, going to make a really great wine you have to make great grapes.
+
+0:01:00.170,0:01:02.220
+And if your grapes are no good, your wine is no good.
+
+0:01:02.220,0:01:03.500
+Same is true for machine learning.
+
+0:01:03.500,0:01:04.000
+You need good data.
+
+0:01:04.000,0:01:06.540
+You need to really understand your data really well.
+
+0:01:06.540,0:01:08.980
+And then there's a technique to it to make really great wine and
+
+0:01:08.980,0:01:10.590
+it's really hard to learn.
+
+0:01:10.590,0:01:13.220
+Same is true for machine learning there's a technique to look at data,
+
+0:01:13.220,0:01:15.560
+to understand data, to be able to apply algorithms.
+
+0:01:15.560,0:01:17.500
+And if you don't master the technique you
+
+0:01:17.500,0:01:19.090
+will never be a great machiner in person.
+
+0:01:19.090,0:01:21.940
+>> So in this class, in our machine learning class we're going to start with
+
+0:01:21.940,0:01:23.940
+a bunch of machine learning algorithms.
+
+0:01:23.940,0:01:26.530
+But we're also going to be looking at some really interesting datasets.
+
+0:01:26.530,0:01:30.120
+And we're going to be asking some really interesting and kind of hard questions.
+
+0:01:30.120,0:01:32.690
+But questions that we think are going to be really cool to answer.
+
+0:01:32.690,0:01:35.340
+So we're going to start from raw data, and then we're going to
+
+0:01:35.340,0:01:38.398
+show a machine learning process that sort of goes from beginning to end.
+
+0:01:38.398,0:01:41.240
+So that you can start with a dataset of your own.
+
+0:01:41.240,0:01:43.080
+And you know how to tackle it using machine learning.
+
+0:01:43.080,0:01:44.740
+We are here in Silicon Valley.
+
+0:01:44.740,0:01:47.590
+And in Silicon Valley machine learning is a big deal.
+
+0:01:47.590,0:01:50.120
+Companies like Netflix, Amazon, Google and
+
+0:01:50.120,0:01:54.760
+many others use data on a daily basis to optimize the product experience.
+
+0:01:54.760,0:01:58.230
+And I can tell you, if you're proficient in big data and understand data
+
+0:01:58.230,0:02:02.480
+science really well, you will find a job in Silicon Valley, very likely.
+
+0:02:02.480,0:02:04.930
+And the starting salaries are unbelievably high.
+
+0:02:04.930,0:02:07.369
+They are often north of $150 to an $1,000.
+
+0:02:07.369,0:02:10.054
+>> And even if you're not looking for a job in data science right now.
+
+0:02:10.054,0:02:13.152
+There's still probably lots of ways that machine learning is something that you
+
+0:02:13.152,0:02:14.050
+use everyday.
+
+0:02:14.050,0:02:15.710
+So when I go on Netflix at night.
+
+0:02:15.710,0:02:17.650
+How do I figure what, what movie I'm going to watch,
+
+0:02:17.650,0:02:20.250
+Netflix makes recommendation using machine learning.
+
+0:02:20.250,0:02:22.900
+When I use my credit card, to make a purchase.
+
+0:02:22.900,0:02:25.680
+There's fraud protection on it, that's machine learning as well.
+
+0:02:25.680,0:02:28.830
+You're get some insights into how all kinds of tools that you use
+
+0:02:28.830,0:02:31.740
+everyday are working, and they're built on top of machine learning.
+
+0:02:31.740,0:02:32.930
+>> This is a really great class.
+
+0:02:32.930,0:02:33.540
+>> It's learning by doing.
+
+0:02:33.540,0:02:35.770
+We'll see you in class.
+
+0:02:35.770,0:02:36.790
+>> We'll see you in class

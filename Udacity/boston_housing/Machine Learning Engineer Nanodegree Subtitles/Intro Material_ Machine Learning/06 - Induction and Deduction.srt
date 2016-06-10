@@ -1,0 +1,281 @@
+0:00:00.210,0:00:03.060
+Well, what you're doing in order to make[br]that work and what you end up doing in
+
+0:00:03.060,0:00:05.160
+supervised learning and[br]functions approximation in general,
+
+0:00:05.160,0:00:07.920
+is you make some fundamental[br]assumptions about the work, right?
+
+0:00:07.920,0:00:11.560
+You decide that you have a well-behaved[br]function that is consistent with
+
+0:00:11.560,0:00:15.480
+the data that you're given, and with[br]that, you're able to generalize, and
+
+0:00:15.480,0:00:18.120
+in fact that is the fundamental[br]problem in machine learning.
+
+0:00:18.120,0:00:19.760
+It is generalization.
+
+0:00:19.760,0:00:23.055
+Now what's behind all of is[br]I'm going to claim, Michael,
+
+0:00:23.055,0:00:27.030
+you jump in whenever you disagree is[br]>> I disagree sorry to soon, go ahead.
+
+0:00:27.030,0:00:28.520
+>> is bias and in particular
+
+0:00:28.520,0:00:29.652
+>> bias[br]>> inductive bias.
+
+0:00:29.652,0:00:30.496
+>> Inductive bias.
+
+0:00:30.496,0:00:32.595
+>> Right, so all of machine learning or
+
+0:00:32.595,0:00:37.360
+certainly supervised learning is about[br]induction, as opposed to deduction.
+
+0:00:37.360,0:00:39.070
+>> I see.[br]Induction of course being a problem of
+
+0:00:39.070,0:00:41.820
+going from examples to[br]a more general rule.
+
+0:00:41.820,0:00:44.700
+>> Right, specifics to generalities.
+
+0:00:44.700,0:00:46.160
+By contrast, deduction is?
+
+0:00:47.730,0:00:48.250
+>> Be the opposite.
+
+0:00:48.250,0:00:51.300
+It would be going from a general[br]rule to specific instances,
+
+0:00:51.300,0:00:53.290
+basically like reasoning.
+
+0:00:53.290,0:00:54.190
+>> Right, and in fact,
+
+0:00:54.190,0:00:56.900
+a lot of AI in the beginning[br]was about deductive reasoning,
+
+0:00:56.900,0:01:00.200
+about logic programming, those sorts of[br]things, where you have certain rules,
+
+0:01:00.200,0:01:03.400
+and you deduce only those things that[br]follow immediately from those rules.
+
+0:01:03.400,0:01:06.030
+So for example,[br]you'd have something like A implies B.
+
+0:01:06.030,0:01:08.200
+That's a rule in the universe.
+
+0:01:08.200,0:01:09.650
+And then I tell you A.
+
+0:01:09.650,0:01:12.540
+So if you A implies B is a rule in[br]the universe, and I tell you A,
+
+0:01:12.540,0:01:14.540
+then you also know?
+
+0:01:14.540,0:01:16.310
+>> That A implies B.
+
+0:01:16.310,0:01:17.930
+>> And therefore you can infer that?
+
+0:01:17.930,0:01:18.480
+>> And A. B. >> B.
+
+0:01:18.480,0:01:23.270
+You have A implies B,[br]you have A, that implies B.
+
+0:01:23.270,0:01:26.890
+>> Okay.[br]>> That's what we just said.
+
+0:01:28.230,0:01:29.040
+But what,[br]>> that's deduction.
+
+0:01:29.040,0:01:31.680
+>> That's deduction, but[br]we just did was not deduction.
+
+0:01:31.680,0:01:35.480
+Before then when I asked you one, one,[br]two, four, three, nine, four sixteen and
+
+0:01:35.480,0:01:36.230
+so forth.
+
+0:01:36.230,0:01:37.310
+>> Right,[br]>> we did induction.
+
+0:01:37.310,0:01:38.090
+>> That was induction.
+
+0:01:38.090,0:01:41.900
+>> Induction is more about[br]did the sun rise yesterday?
+
+0:01:41.900,0:01:43.610
+>> yes.[br]>> Did the sun rise the day before that?
+
+0:01:43.610,0:01:45.090
+>> yes.[br]>> Did the sun rise the day before that?
+
+0:01:46.880,0:01:48.080
+>> I slept in.
+
+0:01:48.080,0:01:49.250
+Did the sun rise the day before that?
+
+0:01:49.250,0:01:49.860
+>> Yes.
+
+0:01:49.860,0:01:50.360
+>> Yes.
+
+0:01:50.360,0:01:51.520
+So the sun has risen every day.
+
+0:01:51.520,0:01:52.810
+Is the sun going to rise tomorrow?
+
+0:01:53.870,0:01:54.740
+>> I sure hope so.
+
+0:01:54.740,0:01:57.030
+>> We all hope so, and[br]we all act like it does,
+
+0:01:57.030,0:02:00.010
+because if it doesn't, then there are a[br]whole bunch of other things we ought to
+
+0:02:00.010,0:02:02.290
+be doing besides sitting in this[br]studio and having this interview.
+
+0:02:02.290,0:02:03.481
+>> I think we should warn the plants.
+
+0:02:03.481,0:02:05.701
+>> [LAUGH] I don't think[br]the plants are going to care.
+
+0:02:05.701,0:02:07.050
+>> They are.[br]They really need sun.
+
+0:02:07.050,0:02:09.389
+I think we all need sun, Mike.
+
+0:02:09.389,0:02:11.200
+>> Eh.[br]>> So, the idea there is
+
+0:02:11.200,0:02:14.310
+induction is crucial, and[br]the inductive bias is crucial.
+
+0:02:14.310,0:02:16.650
+We'll talk about all of this in,[br]in the course.
+
+0:02:16.650,0:02:17.680
+>> Kay.[br]>> But that's kind of a fundamental
+
+0:02:17.680,0:02:19.930
+notion behind supervised learning and[br]machine learning in general.
+
+0:02:19.930,0:02:20.500
+>> I agree with that.
+
+0:02:20.500,0:02:21.110
+>> Agreed?[br]>> Yeah.
+
+0:02:21.110,0:02:22.080
+>> Al lright, so we're on the same page.
+
+0:02:22.080,0:02:23.260
+So that's supervised learning.
+
+0:02:23.260,0:02:25.820
+Supervised learning, you can talk about[br]it in these high muckity muck ways, but
+
+0:02:25.820,0:02:27.990
+at the end of the day,[br]it's function approximation.
+
+0:02:27.990,0:02:30.090
+It's figuring out how to take[br]a bunch of training examples and
+
+0:02:30.090,0:02:33.050
+coming up with some function[br]that generalizes beyond
+
+0:02:33.050,0:02:33.660
+the data that you see.
+
+0:02:33.660,0:02:35.590
+>> So, why wouldn't you call[br]it function induction, then?
+
+0:02:37.175,0:02:38.770
+>> because someone said[br]supervised learning first.
+
+0:02:38.770,0:02:39.280
+Well, there is a-
+
+0:02:39.280,0:02:39.850
+>> No, no, no, no, no.[br]Sorry.
+
+0:02:39.850,0:02:43.297
+You said supervised learning is function[br]approximation and I want to say,
+
+0:02:43.297,0:02:46.680
+why don't you say supervised[br]learning is function induction.
+
+0:02:46.680,0:02:48.210
+>> As opposed to function approximation?
+
+0:02:48.210,0:02:48.960
+>> Yeah.
+
+0:02:48.960,0:02:49.470
+>> Okay.
+
+0:02:49.470,0:02:51.840
+It's a[br]>> Approximate function induction.
+
+0:02:53.230,0:02:55.353
+>> Or induction of approximate, of.
+
+0:02:55.353,0:02:56.061
+>> Approximate functions?
+
+0:02:56.061,0:02:56.960
+>> Approximate functions,[br]something like that, yeah.
+
+0:02:56.960,0:02:59.160
+>> You don't want to induce[br]an approximate function,
+
+0:02:59.160,0:03:00.600
+you want to induce the actual function.
+
+0:03:00.600,0:03:01.970
+>> Yeah, but sometimes you can't,[br]>> Yeah.
+
+0:03:01.970,0:03:06.254
+>> Because sometimes you think[br]it's quadratic, but it's not.
+
+0:03:06.254,0:03:07.900
+>> I have that as a plaque on my wall.
+
+0:03:07.900,0:03:09.370
+>> You do?
+
+0:03:09.370,0:03:09.962
+>> No.
+
+0:03:09.962,0:03:10.682
+>> Yeah I didn't think so.
+
+0:03:10.682,0:03:11.970
+Okay so that's supervised learning

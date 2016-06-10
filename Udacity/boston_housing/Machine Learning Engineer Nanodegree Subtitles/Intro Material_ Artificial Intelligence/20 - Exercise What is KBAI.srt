@@ -1,0 +1,11 @@
+0:00:16.640,0:00:20.360
+>> So the autonomous vehicle may really belong to the acting rationally side of
+
+0:00:20.360,0:00:25.080
+the spectrum. At the same time, looking at the way humans write might help us
+
+0:00:25.080,0:00:29.010
+design a robot. And looking at the robot design might help us reflect on
+
+0:00:29.010,0:00:32.347
+human cognition. This is one of the patterns of knowledge-based data.

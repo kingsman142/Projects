@@ -1,0 +1,11 @@
+0:00:00.460,0:00:04.520
+Now that we have talked about the characteristics of AI, agents in AI problems.
+
+0:00:04.520,0:00:07.939
+Let us talk a little about for what kind of problems might you build in AI
+
+0:00:07.939,0:00:13.285
+agent. On the right are several tasks. Which are these AI problems? Or to put it
+
+0:00:13.285,0:00:16.930
+differently, for which of these problems would you build an AI agent to solve?

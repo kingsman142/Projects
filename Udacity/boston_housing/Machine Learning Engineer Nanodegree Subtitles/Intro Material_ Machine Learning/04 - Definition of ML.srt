@@ -1,0 +1,242 @@
+0:00:00.510,0:00:01.940
+Hi Michael.[br]>> Hey Charles, how's it going?
+
+0:00:01.940,0:00:03.460
+>> It's going quite well,[br]how's it going with you?
+
+0:00:03.460,0:00:04.110
+>> Good.[br]Good.
+
+0:00:04.110,0:00:05.138
+>> Good Good.
+
+0:00:05.138,0:00:08.761
+So, today I thought we would talk[br]a little bit about the philosophy of
+
+0:00:08.761,0:00:09.762
+Machine Learning.
+
+0:00:09.762,0:00:11.620
+>> Oh, I hate philosophy.
+
+0:00:11.620,0:00:14.406
+>> I don't like it much either,[br]although I am a doctor of philosophy.
+
+0:00:14.406,0:00:15.451
+>> Oh, that's very impressive.
+
+0:00:15.451,0:00:16.910
+>> Aren't you a doctor[br]of philosophy too?
+
+0:00:16.910,0:00:17.809
+>> I am, it's kind of impressive.
+
+0:00:17.809,0:00:19.145
+>> It is kind of impressive.
+
+0:00:19.145,0:00:22.245
+So what we wanted to kind of get across[br]today was a little bit about why we,
+
+0:00:22.245,0:00:24.300
+the class is structured the way it is.
+
+0:00:24.300,0:00:25.070
+What the different parts are.
+
+0:00:25.070,0:00:26.830
+And maybe go a little bit of back and
+
+0:00:26.830,0:00:30.189
+forth about what we think you should[br]be getting out of the course.
+
+0:00:30.189,0:00:30.886
+That seem reasonable?
+
+0:00:30.886,0:00:31.490
+>> Sure.
+
+0:00:31.490,0:00:32.276
+>> Okay.[br]Well, so,
+
+0:00:32.276,0:00:35.257
+first off, by the way, before we get[br]started, I wanted to thank you for
+
+0:00:35.257,0:00:38.458
+coming down to Atlanta, and[br]joining me in these beautiful, studios.
+
+0:00:38.458,0:00:40.010
+>> Well, it's, it's,[br]it's very nice to be here.
+
+0:00:40.010,0:00:41.490
+Thank you for inviting me.
+
+0:00:41.490,0:00:42.770
+>> Oh, no, no, thank you for[br]coming, Michael.
+
+0:00:42.770,0:00:44.420
+>> Thank you for[br]asking me to do the course.
+
+0:00:44.420,0:00:45.860
+This has been a lot of fun.
+
+0:00:45.860,0:00:47.460
+>> Oh, the whole point was to be able[br]to do the course with you, Michael.
+
+0:00:48.640,0:00:51.033
+We like each other, and that's one of[br]the things that we want you to get,
+
+0:00:51.033,0:00:53.322
+want to get across in this class,[br]because we like machine learning.
+
+0:00:53.322,0:00:57.485
+We've a lot of stuff in common, but I'm[br]not sure we completely agree on the most
+
+0:00:57.485,0:01:01.232
+important parts of machine learning and[br]why we do the things that we do.
+
+0:01:01.232,0:01:02.235
+>> Hm, all right.
+
+0:01:02.235,0:01:04.054
+>> So[br]I think people in the outside world,
+
+0:01:04.054,0:01:07.042
+Michael, would claim that you're[br]more theoretical than I am.
+
+0:01:07.042,0:01:07.727
+>> In theory.
+
+0:01:07.727,0:01:10.639
+>> In theory, and[br]I'm more practical than you are.
+
+0:01:10.639,0:01:11.593
+>> Practically.
+
+0:01:11.593,0:01:13.140
+>> At least in practice.
+
+0:01:13.140,0:01:16.046
+And hopefully some of that tension[br]will come out in the class.
+
+0:01:16.046,0:01:18.941
+But I think in order to see why[br]that tension works that way,
+
+0:01:18.941,0:01:21.250
+you have to understand[br]what machine learning is.
+
+0:01:21.250,0:01:21.790
+So, Michael.
+
+0:01:21.790,0:01:22.730
+>> Right.
+
+0:01:22.730,0:01:23.600
+>> What's machine learning?
+
+0:01:23.600,0:01:25.530
+>> It's about proving theorems.
+
+0:01:25.530,0:01:26.624
+>> [LAUGH] No.
+
+0:01:26.624,0:01:28.469
+>> No.[br]>> I would not say it's about proving
+
+0:01:28.469,0:01:32.007
+theorems, although proving theorems is[br]often important in machine learning.
+
+0:01:32.007,0:01:32.888
+>> I agree with that.
+
+0:01:32.888,0:01:34.224
+>> Okay.[br]>> So we're on the same page.
+
+0:01:34.224,0:01:35.501
+>> We're partially on the same page.
+
+0:01:35.501,0:01:37.299
+What is machine learning?
+
+0:01:37.299,0:01:38.450
+>> What is machine learning?
+
+0:01:38.450,0:01:39.200
+>> Give me a definition.
+
+0:01:39.200,0:01:43.969
+>> So it is computational statistics.
+
+0:01:43.969,0:01:45.409
+How's that for a definition?
+
+0:01:45.409,0:01:46.251
+>> That is a definition.
+
+0:01:46.251,0:01:47.892
+It is wrong on so many levels.
+
+0:01:47.892,0:01:50.201
+However, a lot of people would[br]agree with that statement.
+
+0:01:50.201,0:01:53.877
+They would say that machine learning[br]is really just applied statistics.
+
+0:01:53.877,0:01:54.831
+>> Not applied statistics.
+
+0:01:54.831,0:01:56.548
+Computational statistics.
+
+0:01:56.548,0:01:59.563
+>> Computationally applied statistics.
+
+0:01:59.563,0:02:01.284
+I don't like that definition.
+
+0:02:01.284,0:02:03.798
+I think that it's a bit too narrow.
+
+0:02:03.798,0:02:07.034
+I think that machine learning[br]is about this broader notion of
+
+0:02:07.034,0:02:10.687
+building artifacts,[br]computational artifacts, typically.
+
+0:02:10.687,0:02:12.820
+That learn over time[br]based on experience.
+
+0:02:12.820,0:02:15.610
+And then in particular,[br]it's not just the act
+
+0:02:15.610,0:02:19.101
+of building these artifacts that matter,[br]it's the math behind it.
+
+0:02:19.101,0:02:20.684
+It's the science behind it.
+
+0:02:20.684,0:02:22.663
+It's the engineering behind it,[br]and it's the computing behind it.
+
+0:02:22.663,0:02:27.324
+It's everything that goes into building[br]intelligent artifacts that almost by
+
+0:02:27.324,0:02:29.419
+necessity have to learn over time.
+
+0:02:29.419,0:02:30.730
+You buy that?
+
+0:02:30.730,0:02:33.750
+>> Yeah, so you, you have data, and[br]you do analysis of the data and
+
+0:02:33.750,0:02:34.968
+try to glean things from the data.
+
+0:02:34.968,0:02:40.850
+And you used, various kinds of[br]computational structure to do that,
+
+0:02:40.850,0:02:42.710
+so, computational statistics.
+
+0:02:42.710,0:02:45.330
+>> I don't think that's[br]computational statistics.

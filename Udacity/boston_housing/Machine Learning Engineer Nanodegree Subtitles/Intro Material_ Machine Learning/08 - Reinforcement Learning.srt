@@ -1,0 +1,353 @@
+0:00:00.125,0:00:01.425
+All right.[br]So that's supervised learning and
+
+0:00:01.425,0:00:02.087
+unsupervised learning.
+
+0:00:02.087,0:00:02.921
+That's pretty good.
+
+0:00:02.921,0:00:04.640
+The last one is reinforcement learning.
+
+0:00:04.640,0:00:05.442
+>> [SOUND].
+
+0:00:05.442,0:00:07.587
+>> Now reinforcement learning[br]is what we both do, so
+
+0:00:07.587,0:00:10.561
+Michael does a little bit of[br]reinforcement learning here and there.
+
+0:00:10.561,0:00:12.906
+You've got how many papers published[br]in reinforcement learning?
+
+0:00:12.906,0:00:13.545
+>> All of them.
+
+0:00:13.545,0:00:14.902
+[LAUGH] Several.
+
+0:00:14.902,0:00:15.704
+I have several.
+
+0:00:15.704,0:00:19.455
+>> The man has like a hundred papers of[br]reinforcement learnings and in fact he
+
+0:00:19.455,0:00:24.299
+wrote with his colleagues the great[br]summary journal article bringing every
+
+0:00:24.299,0:00:28.012
+one up to date on what reinforcement[br]learning was like back in 1990.
+
+0:00:28.012,0:00:29.718
+>> Yeah like 112 years ago.
+
+0:00:29.718,0:00:30.417
+>> 1992.
+
+0:00:30.417,0:00:33.386
+>> People are saying yeah we should[br]probably somebody should write a new one
+
+0:00:33.386,0:00:35.733
+because the other ones getting[br]a little long in the dude.
+
+0:00:35.733,0:00:37.520
+>> But there's been books written[br]on machine learning system.
+
+0:00:37.520,0:00:38.055
+>> That's right.
+
+0:00:38.055,0:00:38.659
+>> It's a very popular field.
+
+0:00:38.659,0:00:39.760
+That's why we're both in it.
+
+0:00:39.760,0:00:41.573
+Michael tends to prove a lot of things,.
+
+0:00:41.573,0:00:43.521
+>> It is not, that is not why I'm in it.
+
+0:00:43.521,0:00:45.391
+>> What, I didn't, wait, what?
+
+0:00:45.391,0:00:47.701
+>> You said it's a very popular[br]field and that's why we're in it.
+
+0:00:47.701,0:00:48.561
+>> No, no, no, no, no.
+
+0:00:48.561,0:00:49.212
+Did I say that?
+
+0:00:49.212,0:00:49.908
+>> That's what I heard.
+
+0:00:49.908,0:00:50.976
+>> I didn't mean to say that.
+
+0:00:50.976,0:00:52.323
+>> [SOUND] Let's run it back and see.
+
+0:00:52.323,0:00:52.903
+>> It's a very popular, yeah,
+
+0:00:52.903,0:00:53.981
+let's do that again because[br]I did not mean to say that.
+
+0:00:53.981,0:00:55.096
+It is a very popular field.
+
+0:00:55.096,0:00:56.535
+Perhaps because you're in it Michael.
+
+0:00:56.535,0:00:57.107
+>> I don't think that's it.
+
+0:00:57.107,0:00:58.518
+When I was an undergraduate,
+
+0:00:58.518,0:01:01.008
+I thought the thing that I[br]really want to understand.
+
+0:01:01.008,0:01:03.040
+I liked AI,[br]I liked the whole idea of AI.
+
+0:01:03.040,0:01:06.457
+But what I really want to understand[br]is how can you learn to be
+
+0:01:06.457,0:01:08.009
+better from experience?
+
+0:01:08.009,0:01:10.595
+And like I, I built a tic-tac-toe[br]playing program, and like,
+
+0:01:10.595,0:01:13.802
+I want this tic-tac-toe playing program[br]to get really good at tic-tac-toe.
+
+0:01:13.802,0:01:17.438
+because I was always interested[br]in the most practical society
+
+0:01:17.438,0:01:18.885
+impacting problems.
+
+0:01:18.885,0:01:22.323
+>> I think that generalized[br]pretty well to world hunger.
+
+0:01:22.323,0:01:22.939
+>> Eventually.
+
+0:01:22.939,0:01:24.831
+So so that is what got[br]me interested in it, and
+
+0:01:24.831,0:01:27.144
+I was, I didn't even know what[br]it was called for a long time.
+
+0:01:27.144,0:01:29.391
+So I started doing[br]reinforcement learning, and
+
+0:01:29.391,0:01:31.927
+then discovered that it was[br]interesting and popular.
+
+0:01:31.927,0:01:33.111
+>> Right.
+
+0:01:33.111,0:01:35.799
+Well, I certainly wouldn't suggest that[br]we're doing the science that we're doing
+
+0:01:35.799,0:01:36.592
+because it's popular.
+
+0:01:36.592,0:01:37.951
+We're doing it because[br]we're interested in it.
+
+0:01:37.951,0:01:38.508
+>> Yes.
+
+0:01:38.508,0:01:41.792
+>> And I'm interested in reinforcement[br]learning because in some sense,
+
+0:01:41.792,0:01:44.592
+it kind of encapsulates all[br]the things I happen to care about.
+
+0:01:44.592,0:01:48.587
+I come from a sort of general AI[br]background, and I care modeling people.
+
+0:01:48.587,0:01:51.567
+I care about building smart agents[br]that have to live in in world that
+
+0:01:51.567,0:01:54.813
+other smart agents, thousands of them,[br]hundreds of thousand of them,
+
+0:01:54.813,0:01:55.737
+thousands of them.
+
+0:01:55.737,0:01:57.362
+Some of them might be human and
+
+0:01:57.362,0:02:00.230
+have to feel some way to[br]predict what to do over time.
+
+0:02:00.230,0:02:03.386
+So, from a sort a technical point[br]of view, if we can think of re,
+
+0:02:03.386,0:02:06.545
+in, supervised learning as[br]function approximation and
+
+0:02:06.545,0:02:08.485
+unsupervised learning as, you know.
+
+0:02:08.485,0:02:09.362
+>> Concise-[br]>> Concise,
+
+0:02:09.362,0:02:12.076
+impact description, what's[br]the difference between something like
+
+0:02:12.076,0:02:13.640
+reinforcement learning and those two?
+
+0:02:13.640,0:02:14.464
+Supervised learning.
+
+0:02:14.464,0:02:17.284
+>> So often the way that[br]supervised learning oh, sorry,
+
+0:02:17.284,0:02:21.290
+reinforcement learning is described is,[br]is learning from delayed reward.
+
+0:02:21.290,0:02:22.969
+>> Mm-hm.[br]So instead of the feedback that you get
+
+0:02:22.969,0:02:25.249
+in supervised learning which[br]is here's what you should do.
+
+0:02:25.249,0:02:28.364
+And the feedback that you get in[br]unsupervised learning which is
+
+0:02:28.364,0:02:31.481
+the feedback in reinforcement[br]learning may come several steps
+
+0:02:31.481,0:02:33.968
+after the decisions that[br]you've actually made.
+
+0:02:33.968,0:02:36.257
+>> So a good example of that, or[br]the easy example of that would be,
+
+0:02:36.257,0:02:38.044
+actually your tic-tac-toe program,[br]right?
+
+0:02:38.044,0:02:42.452
+So, you do something in tic-tac-toe,[br]you put an X in the center and
+
+0:02:42.452,0:02:45.266
+then you put a, let's say,[br]an O over here.
+
+0:02:45.266,0:02:45.766
+>> Oh.
+
+0:02:45.766,0:02:47.762
+>> And then I put an X right here.
+
+0:02:47.762,0:02:48.401
+>> Nice.
+
+0:02:48.401,0:02:51.327
+>> And then you ridiculously[br]put an O in the center.
+
+0:02:51.327,0:02:53.728
+>> Which allows me to put[br]an X over here and I win.
+
+0:02:53.728,0:02:54.309
+>> All right.
+
+0:02:54.309,0:02:56.219
+>> Now what's interesting about that is,
+
+0:02:56.219,0:02:59.487
+I didn't tell you what happened until[br]the very end when I said X wins.
+
+0:02:59.487,0:03:00.509
+>> Right.
+
+0:03:00.509,0:03:03.161
+And now I know I made a mistake[br]somewhere along the way but
+
+0:03:03.161,0:03:04.584
+I don't know exactly where.
+
+0:03:04.584,0:03:07.650
+I may have to kind of roll back the game[br]in my mind and eventually figure out
+
+0:03:07.650,0:03:10.389
+where it is that I went off track,[br]and what it is that I did wrong.
+
+0:03:10.389,0:03:12.339
+>> And in the full generality[br]of reinforcement learning,
+
+0:03:12.339,0:03:13.547
+you may have never made a mistake.
+
+0:03:13.547,0:03:15.650
+It may simply be that's[br]the way games go but
+
+0:03:15.650,0:03:18.584
+you would like to know which of[br]the moves you made mattered.
+
+0:03:18.584,0:03:21.307
+Now, if it were a civilized learning[br]problem, I would have put the X here,
+
+0:03:21.307,0:03:24.004
+he would have put the O there, and[br]it would have been called that's Good.
+
+0:03:24.004,0:03:25.727
+I would have put the X here, and
+
+0:03:25.727,0:03:29.781
+when he put the O there, it would have[br]been that's Bad, the O goes here.
+
+0:03:29.781,0:03:30.339
+>> Mm-hm.
+
+0:03:30.339,0:03:31.382
+Right.[br]>> Or something like that.
+
+0:03:31.382,0:03:33.777
+It would have told you where[br]he should have put the O.
+
+0:03:33.777,0:03:36.059
+But here, all he gets is eventually[br]some kind of signal saying,
+
+0:03:36.059,0:03:36.962
+you did something well.
+
+0:03:36.962,0:03:39.955
+You did something poorly and even[br]then it's only relative to the other
+
+0:03:39.955,0:03:41.536
+signals that you might have gotten.
+
+0:03:41.536,0:03:44.428
+>> Right, so then reinforcement[br]learning is in some sense harder
+
+0:03:44.428,0:03:46.400
+because nobody's telling you what to do.
+
+0:03:46.400,0:03:47.782
+You have to work it out on your own.
+
+0:03:47.782,0:03:51.624
+>> Yeah it's like playing a game[br]without knowing any of the rules.
+
+0:03:51.624,0:03:56.478
+Or at least knowing how you win or lose.
+
+0:03:56.478,0:04:00.342
+But being told every once in awhile that[br]you've won or you've lost, okay, now-
+
+0:04:00.342,0:04:01.283
+>> Sometimes I feel like that.
+
+0:04:01.283,0:04:03.130
+>> I know man.

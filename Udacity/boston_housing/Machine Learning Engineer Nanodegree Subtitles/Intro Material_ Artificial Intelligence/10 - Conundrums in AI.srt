@@ -1,0 +1,59 @@
+0:00:00.290,0:00:03.490
+Let's start a recognition today. We're discussing some of the biggest
+
+0:00:03.490,0:00:07.140
+problems in AI. We obviously are not going to solve all of them today, but
+
+0:00:07.140,0:00:12.460
+it's good to start with a big picture. AI has several conundrums,
+
+0:00:12.460,0:00:17.070
+I'm going to describe five of the main ones today. Conundrum number one.
+
+0:00:17.070,0:00:21.020
+All intelligent agents have little computational resources, processing speed,
+
+0:00:21.020,0:00:25.370
+memory size, and so on. But most interesting AI problems are computationally
+
+0:00:25.370,0:00:30.150
+intractable. How then can we get AI agents to give us near real time
+
+0:00:30.150,0:00:35.650
+performance on many interesting problems? Conundrum number two.
+
+0:00:35.650,0:00:40.770
+All competition is local, but most AI problems have global constraints. How then
+
+0:00:40.770,0:00:45.650
+can we get AI agents to address global problems using only local computation?
+
+0:00:45.650,0:00:50.190
+Conundrum number three. Computation logic is fundamentally deductive, but
+
+0:00:50.190,0:00:53.880
+many AI problems are abductive or inductive in their nature.
+
+0:00:53.880,0:00:58.620
+How can we get AI agents to address abductive or inductive problems? If you do
+
+0:00:58.620,0:01:02.290
+not understand some of these terms, like abduction, don't worry about it,
+
+0:01:02.290,0:01:06.730
+we'll discuss it later in the later in the class. Conundrum number four.
+
+0:01:06.730,0:01:12.090
+The world is dynamic, knowledge is limited, but an AI agent must always begin
+
+0:01:12.090,0:01:16.320
+with what it already knows. How then can an AI agent ever address a new problem?
+
+0:01:18.040,0:01:21.490
+Conundrum number five. Problem solving, reasoning, and learning
+
+0:01:21.490,0:01:26.540
+are complex enough, but explanation and justification add to the complexity.
+
+0:01:26.540,0:01:30.780
+How then can we get an AI agent to ever explain or justify it's decisions?

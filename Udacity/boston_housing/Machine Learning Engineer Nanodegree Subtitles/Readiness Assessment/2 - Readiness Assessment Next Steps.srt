@@ -1,0 +1,164 @@
+0:00:00.000,0:00:02.552
+>> You've gotten feedback[br]based on your responses and
+
+0:00:02.552,0:00:04.720
+we hope you take it seriously.
+
+0:00:04.720,0:00:06.640
+There are two options for what happened.
+
+0:00:06.640,0:00:10.638
+In option one, one or more of those[br]feedback messages said that now isn't
+
+0:00:10.638,0:00:14.000
+the right time for[br]you to begin this NIM degree.
+
+0:00:14.000,0:00:17.485
+Maybe you don't have some background[br]knowledge, but you can get it.
+
+0:00:17.485,0:00:19.455
+>> And once you get it,[br]you will be ready.
+
+0:00:19.455,0:00:21.990
+And remember, even once you[br]are ready to start the program,
+
+0:00:21.990,0:00:24.700
+there still will be[br]challenges along the way.
+
+0:00:24.700,0:00:25.459
+>> Exactly.
+
+0:00:25.459,0:00:28.610
+And option two is that you are ready.
+
+0:00:28.610,0:00:31.308
+And if you decide to make this[br]commitment, there's a good chance that
+
+0:00:31.308,0:00:34.800
+in a matter of months, your career[br]will be drastically different.
+
+0:00:34.800,0:00:37.472
+But even if you're ready and[br]you do make the commitment,
+
+0:00:37.472,0:00:39.040
+this will still be challenging.
+
+0:00:39.040,0:00:39.840
+>> Mm-hm.
+
+0:00:39.840,0:00:43.280
+It's perfectly possible that over the[br]next several months, you'll have times
+
+0:00:43.280,0:00:46.671
+where things feel challenging or you[br]feel frustrated, you feel overwhelmed or
+
+0:00:46.671,0:00:49.900
+maybe you even feel like you[br]don't belong in this program.
+
+0:00:49.900,0:00:51.820
+>> I wouldn't even say[br]perfectly possible.
+
+0:00:51.820,0:00:54.880
+I would say, very probable.
+
+0:00:54.880,0:00:58.349
+And those things are going to[br]happen when your code won't run and
+
+0:00:58.349,0:00:59.549
+you don't know why or
+
+0:00:59.549,0:01:03.297
+you feel lost in intimidating[br]jargon that you don't understand.
+
+0:01:03.297,0:01:06.630
+Or when you're trying to install[br]software and it won't run or
+
+0:01:06.630,0:01:09.380
+someone in the forum[br]is way ahead of you.
+
+0:01:09.380,0:01:11.872
+>> When these things happen, understand[br]that they happen to everybody.
+
+0:01:11.872,0:01:12.506
+>> Right.
+
+0:01:12.506,0:01:16.510
+And some of that struggle is[br]unavoidable and actually productive.
+
+0:01:16.510,0:01:18.045
+It's just what learning feels like.
+
+0:01:18.045,0:01:18.612
+>> Mm-hm.
+
+0:01:18.612,0:01:20.443
+And in those moments[br]when you're struggling,
+
+0:01:20.443,0:01:23.419
+it's important to remember too that you[br]have a whole community of your fellow
+
+0:01:23.419,0:01:25.040
+students out there to help you.
+
+0:01:25.040,0:01:27.054
+As well as your team of[br]Udacity coaches here.
+
+0:01:27.054,0:01:27.822
+>> And Google.
+
+0:01:27.822,0:01:28.689
+>> Yes, Google.
+
+0:01:28.689,0:01:29.730
+Amazing resource.
+
+0:01:29.730,0:01:32.026
+Definitely figure out how to[br]answer your own questions.
+
+0:01:32.026,0:01:35.470
+>> But not all of the struggle[br]with the productive kind.
+
+0:01:35.470,0:01:37.264
+Sometimes, it will be[br]because we made a mistake.
+
+0:01:37.264,0:01:37.999
+>> Mm-hm.
+
+0:01:37.999,0:01:40.610
+>> And we're constantly learning and[br]improving too.
+
+0:01:40.610,0:01:42.358
+So maybe our instructions[br]weren't clear or
+
+0:01:42.358,0:01:44.305
+maybe we assumed something[br]we shouldn't have.
+
+0:01:44.305,0:01:44.941
+>> Mm-hm.
+
+0:01:44.941,0:01:46.870
+When you're struggling,[br]be sure to let us know.
+
+0:01:46.870,0:01:49.410
+So like Andy said,[br]we can learn from your feedback.
+
+0:01:49.410,0:01:52.010
+Because that's,[br]that's how we learn how to improve.
+
+0:01:52.010,0:01:52.820
+>> Right.[br]The,
+
+0:01:52.820,0:01:56.840
+the bottom line is there will[br]be times when this is hard.
+
+0:01:56.840,0:02:00.321
+But if you persevere, you will succeed.
+
+0:02:00.321,0:02:03.354
+>> Whatever you choose to learn next and[br]however you choose to learn it,
+
+0:02:03.354,0:02:05.552
+remember that for[br]every obstacle you encounter,
+
+0:02:05.552,0:02:08.080
+you'll be able to do amazing[br]new things as a result of it.
