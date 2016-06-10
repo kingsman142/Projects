@@ -1,0 +1,8 @@
+0:00:15.770,0:00:19.680
+>> I agree. In fact, during this class we'll design AI agents that
+
+0:00:19.680,0:00:23.170
+can address each of these problems. For now, let us just focus on
+
+0:00:23.170,0:00:27.070
+the first one: how to design an AI agent that can answer Jeopardy questions?

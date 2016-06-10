@@ -1,0 +1,209 @@
+0:00:00.110,0:00:04.530
+This class is divided into[br]three subclasses, three parts.
+
+0:00:04.530,0:00:06.010
+They are supervised learning.
+
+0:00:06.010,0:00:07.670
+>> Yeah.[br]>> Unsupervised learning,
+
+0:00:07.670,0:00:08.470
+and reinforcement.
+
+0:00:09.540,0:00:12.145
+So, what do you think[br]supervised learning is?
+
+0:00:12.145,0:00:17.510
+>> So, I think of supervised learning[br]as being the problem of taking labelled
+
+0:00:17.510,0:00:23.057
+data sets, gleaning information from[br]it so that you can label new data sets.
+
+0:00:23.057,0:00:24.138
+>> That's fair.
+
+0:00:24.138,0:00:26.355
+I call that function approximation.
+
+0:00:26.355,0:00:28.798
+So, here's an example[br]of supervised learning.
+
+0:00:28.798,0:00:31.342
+I'm going to give you an input and[br]an output.
+
+0:00:31.342,0:00:32.912
+And I'm going to give[br]them to you as pairs, and
+
+0:00:32.912,0:00:34.360
+I want you to guess[br]what the function is.
+
+0:00:34.360,0:00:35.441
+>> Sure.[br]>> Okay?
+
+0:00:35.441,0:00:36.185
+Okay.
+
+0:00:36.185,0:00:36.845
+1, 1.
+
+0:00:36.845,0:00:37.925
+>> Uh-huh.
+
+0:00:37.925,0:00:38.784
+2, 4.
+
+0:00:38.784,0:00:40.920
+>> Wait, hang on,[br]is 1 the input and 1 the output,.
+
+0:00:40.920,0:00:42.840
+>> Yes.[br]>> And 2 the input, and 4 the output?
+
+0:00:42.840,0:00:44.057
+>> Correct.[br]>> All right.
+
+0:00:44.057,0:00:45.820
+I'm on, I think I am on to you.
+
+0:00:45.820,0:00:46.440
+>> 3, 9.
+
+0:00:46.440,0:00:47.628
+>> Okay.[br]>> 4, 16.
+
+0:00:47.628,0:00:48.383
+>> Nice.
+
+0:00:48.383,0:00:49.148
+>> 5, 25.
+
+0:00:49.148,0:00:50.426
+6, 36.
+
+0:00:50.426,0:00:51.446
+7, 49.
+
+0:00:51.446,0:00:52.666
+>> Nice.
+
+0:00:52.666,0:00:53.503
+This is a very hip data set.
+
+0:00:53.503,0:00:54.349
+>> It is.
+
+0:00:54.349,0:00:56.010
+What's the function?[br]>> It's hip to be squared.
+
+0:00:56.010,0:00:57.200
+>> Exactly.
+
+0:00:57.200,0:00:58.490
+Maybe.
+
+0:00:58.490,0:00:59.660
+So if you believe that's true,
+
+0:00:59.660,0:01:02.150
+then tell me if the input is 10,[br]what's the output?
+
+0:01:02.150,0:01:04.519
+>> 100.[br]>> And that's right, if it turns out,
+
+0:01:04.519,0:01:06.880
+in fact, that the function is x squared.
+
+0:01:06.880,0:01:09.920
+But the truth is, we have no idea[br]whether this function is x squared.
+
+0:01:09.920,0:01:11.800
+Not really.[br]>> I have a pretty good idea.
+
+0:01:11.800,0:01:12.360
+>> You do?[br]>> Well-
+
+0:01:12.360,0:01:13.760
+>> Where's that idea come from?
+
+0:01:13.760,0:01:17.070
+>> It comes from having spoken with[br]you over a long period of time.
+
+0:01:18.520,0:01:19.990
+And plus, you know, math.
+
+0:01:19.990,0:01:20.970
+>> And plus math.
+
+0:01:20.970,0:01:22.430
+Well, I'm going to-
+
+0:01:22.430,0:01:23.100
+>> You can't say I'm wrong.
+
+0:01:23.100,0:01:24.230
+>> You're wrong.
+
+0:01:24.230,0:01:25.060
+>> Oh.[br]>> Yeah, I did.
+
+0:01:25.060,0:01:25.910
+>> You just said I was wrong.
+
+0:01:25.910,0:01:28.330
+>> No, you've talked to me for[br]a long time, and plus math.
+
+0:01:28.330,0:01:29.280
+I agree with that.
+
+0:01:29.280,0:01:30.280
+>> Okay.[br]>> But
+
+0:01:30.280,0:01:32.510
+I'm going to claim that you're[br]making a leap of faith.
+
+0:01:32.510,0:01:34.110
+>> Hm.[br]>> Despite being a scientist,
+
+0:01:34.110,0:01:37.019
+by deciding that the input is 10 and[br]the output is 100.
+
+0:01:38.120,0:01:39.250
+>> Sure.[br]I would agree with that.
+
+0:01:39.250,0:01:40.562
+>> What's that leap of faith?
+
+0:01:40.562,0:01:44.903
+>> Well, I mean, from what you told me,[br]it's still consistent with lots of
+
+0:01:44.903,0:01:48.840
+other mappings from input to[br]output like 10 gets mapped to 11.
+
+0:01:48.840,0:01:51.046
+>> Right or[br]everything is x squared except 10.
+
+0:01:51.046,0:01:51.603
+>> Sure.
+
+0:01:51.603,0:01:53.344
+>> Or everything is x,[br]x squared up to 10.
+
+0:01:53.344,0:01:54.365
+>> Right, that would be mean-
+
+0:01:54.365,0:01:55.446
+>> That would be mean-
+
+0:01:55.446,0:01:57.802
+>> But it's not logically impossible.
+
+0:01:57.802,0:01:59.161
+>> What would be the median?
+
+0:01:59.161,0:02:00.100
+>> A-ha.
+
+0:02:00.100,0:02:00.727
+>> Thank you very much.
+
+0:02:00.727,0:02:01.955
+I, I was saving that one up.

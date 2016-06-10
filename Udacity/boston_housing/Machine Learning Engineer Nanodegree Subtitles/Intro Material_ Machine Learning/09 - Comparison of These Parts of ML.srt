@@ -1,0 +1,437 @@
+0:00:00.001,0:00:03.537
+Okay, so we've got these three little[br]bits of machine learning here.
+
+0:00:03.537,0:00:06.005
+And there are a lot of tools and[br]techniques that are inside that.
+
+0:00:06.005,0:00:07.550
+>> Mm-hm.[br]>> And I think that's great.
+
+0:00:07.550,0:00:09.870
+And we're going to be trying to[br]teach you a lot of those tools and
+
+0:00:09.870,0:00:11.979
+techniques and[br]sort of ways to connect them together.
+
+0:00:11.979,0:00:13.476
+So by the way,[br]as Michael was pointing out,
+
+0:00:13.476,0:00:15.584
+there are kind of ways that these[br]things might help each other,
+
+0:00:15.584,0:00:17.585
+unsupervised learning might[br]help supervised learning.
+
+0:00:17.585,0:00:19.080
+It's actually much deeper than that.
+
+0:00:19.080,0:00:21.817
+It turns out you, even though[br]unsupervised learning is clearly not
+
+0:00:21.817,0:00:24.507
+the same as supervised learning at[br]the level that we described it,
+
+0:00:24.507,0:00:26.394
+in some ways they're[br]exactly the same thing.
+
+0:00:26.394,0:00:28.530
+Supervised learning you have some bias.
+
+0:00:28.530,0:00:31.232
+Oh, it's a quadratic function,[br]induction make sense.
+
+0:00:31.232,0:00:32.920
+All these kind of assumptions you make.
+
+0:00:32.920,0:00:36.643
+And in unsupervised learning, I told you[br]that we don't know whether this clusters
+
+0:00:36.643,0:00:40.258
+is better than this cluster, dividing by[br]sex is better than dividing by height,
+
+0:00:40.258,0:00:41.709
+or, or hair color or whatever.
+
+0:00:41.709,0:00:42.977
+>> Mm.
+
+0:00:42.977,0:00:46.285
+>> But ultimately you make some[br]decision about how to cluster, and
+
+0:00:46.285,0:00:49.050
+that means implicitly[br]there's some assume signal.
+
+0:00:49.050,0:00:50.790
+There's some assume set of labels[br]that you think make sense.
+
+0:00:50.790,0:00:54.722
+Oh, I think things that look alike[br]should somehow be clustered together.
+
+0:00:54.722,0:00:55.289
+>> Mm.
+
+0:00:55.289,0:00:57.810
+>> Or things that are near one[br]another should cluster together.
+
+0:00:57.810,0:00:59.695
+So in some ways it's still kind[br]of like supervised learning.
+
+0:00:59.695,0:01:00.694
+You can certainly turn any
+
+0:01:00.694,0:01:03.481
+supervised learning problem into[br]an unsupervised learning problem.
+
+0:01:03.481,0:01:04.031
+>> Mm, mm.[br]>> Right?
+
+0:01:04.031,0:01:07.250
+So in fact, all of these problems[br]are really the same kind of problem.
+
+0:01:07.250,0:01:08.536
+>> Yeah, well there's two things[br]that I'd want to add to that.
+
+0:01:08.536,0:01:10.800
+One is that in some sense,[br]in many cases,
+
+0:01:10.800,0:01:15.580
+you can formulate all these different[br]problems as some form of optimization.
+
+0:01:15.580,0:01:17.778
+In supervised learning[br]you want something that,
+
+0:01:17.778,0:01:21.178
+that labels data well and so you're,[br]the thing you're trying to optimize is
+
+0:01:21.178,0:01:23.818
+find me a function that,[br]that does that scores it.
+
+0:01:23.818,0:01:27.290
+In reinforcement learning we're trying[br]to find a behavior that scores well.
+
+0:01:27.290,0:01:30.396
+And unsu, unsupervised learning we[br]usually have to make up some kind of
+
+0:01:30.396,0:01:32.982
+a criterion, and then we find[br]a way of clustering the data,
+
+0:01:32.982,0:01:34.929
+organizing the data so[br]that it scores well.
+
+0:01:34.929,0:01:36.490
+So that was the first[br]point I wanted to make.
+
+0:01:36.490,0:01:39.508
+The other one is if you[br]divide things by sex and
+
+0:01:39.508,0:01:43.571
+your a virgin then there's[br]numerical instability issues.
+
+0:01:46.210,0:01:48.409
+>> Do you learn about[br]that on the street?
+
+0:01:48.409,0:01:50.011
+>> I learned it in a Math book.
+
+0:01:50.011,0:01:54.281
+>> Yes you [NOISE] I'm, I'm going to[br]move on And so here's the thing.
+
+0:01:54.281,0:01:55.722
+>> All right.[br]>> Everything just Michael just
+
+0:01:55.722,0:01:57.800
+said except the last part is true.
+
+0:01:57.800,0:01:59.887
+But there's actually a sort of[br]deeper thing going on here.
+
+0:01:59.887,0:02:03.523
+To me, if you think about the[br]commonalities of everything we've just
+
+0:02:03.523,0:02:07.420
+said, it boils down to one thing data,[br]data, data, data, data, data.
+
+0:02:07.420,0:02:08.461
+Data is king in machine learning.
+
+0:02:08.461,0:02:10.600
+Now Michael would call[br]himself a computer scientist.
+
+0:02:10.600,0:02:11.429
+>> Oh, yeah.[br]>> And I would call
+
+0:02:11.429,0:02:13.185
+myself a computationalist.
+
+0:02:13.185,0:02:14.258
+>> What?[br]>> What if I'm in a college of
+
+0:02:14.258,0:02:16.470
+computing at a department[br]of computer science?
+
+0:02:16.470,0:02:19.940
+I believe in computing and[br]computation as being the ultimate thing.
+
+0:02:19.940,0:02:22.073
+So I would call myself[br]a computationalist, and
+
+0:02:22.073,0:02:25.980
+Michael would probably agree with that[br]just to keep this discussion moving.
+
+0:02:25.980,0:02:26.747
+>> Let's say.
+
+0:02:26.747,0:02:27.650
+>> Right.
+
+0:02:27.650,0:02:28.450
+So we're computationalists.
+
+0:02:28.450,0:02:29.880
+We believe in computing.
+
+0:02:29.880,0:02:31.180
+That's a good thing.[br]>> Sure.
+
+0:02:31.180,0:02:33.759
+>> Many of our colleagues who do[br]computations tend to think in terms of
+
+0:02:33.759,0:02:34.321
+algorithms.
+
+0:02:34.321,0:02:37.177
+They think in terms of what[br]are the series of steps I
+
+0:02:37.177,0:02:39.560
+need to do in order to[br]solve some problem?
+
+0:02:39.560,0:02:40.361
+Or they.
+
+0:02:40.361,0:02:42.680
+>> [CROSSTALK].[br]>> Might think in terms of theorems.
+
+0:02:42.680,0:02:45.277
+If I try to describe this[br]problem in a particular way,
+
+0:02:45.277,0:02:47.601
+is it solvable quizzically[br]by some algorithm?
+
+0:02:47.601,0:02:48.470
+>> Yeah.
+
+0:02:48.470,0:02:50.337
+>> And, truthfully,[br]machine learning is a lot of that.
+
+0:02:50.337,0:02:53.771
+But the difference between the person[br]who's trying to solve our problem as
+
+0:02:53.771,0:02:55.569
+an AI person or[br]as a computing person and
+
+0:02:55.569,0:02:59.005
+somebody who's trying to solve our[br]problem as a machine learning person is
+
+0:02:59.005,0:03:02.416
+that the algorithm stops being central,[br]the data starts being central.
+
+0:03:02.416,0:03:05.347
+And so what I hope you get out of this[br]class, or at least part of the stuff
+
+0:03:05.347,0:03:08.082
+that you do, is understanding that[br]you have to believe the data,
+
+0:03:08.082,0:03:11.740
+you have to do something with the data,[br]you have to be consistent with the data.
+
+0:03:11.740,0:03:15.057
+The algorithms that fall out of[br]all that are algorithms, but
+
+0:03:15.057,0:03:19.099
+they're algorithms that take the data[br]as primary or at least important.
+
+0:03:19.099,0:03:20.902
+>> I'm going to go with co-equal.
+
+0:03:20.902,0:03:22.369
+>> So the algorithms and[br]data are co-equal.
+
+0:03:22.369,0:03:23.170
+>> Co-equal.
+
+0:03:23.170,0:03:25.639
+>> Well if you believe in Lisp,[br]they're the same thing.
+
+0:03:25.639,0:03:26.280
+>> Exactly!
+
+0:03:26.280,0:03:26.941
+>> All right.[br]So there you go.
+
+0:03:26.941,0:03:28.709
+>> They knew back in the 70s.
+
+0:03:28.709,0:03:30.110
+>> So[br]it turns out we do agree on most things.
+
+0:03:30.110,0:03:31.378
+>> [NOISE] That was close.
+
+0:03:31.378,0:03:31.879
+>> Excellent!
+
+0:03:31.879,0:03:36.283
+So, the rest of the semester[br]will go exactly like this.
+
+0:03:36.283,0:03:38.620
+>> [LAUGH].[br]>> [LAUGH] Except you won't see us.
+
+0:03:38.620,0:03:40.588
+You'll see our hands though.
+
+0:03:40.588,0:03:41.255
+>> This side.
+
+0:03:41.255,0:03:41.989
+This side.
+
+0:03:41.989,0:03:43.190
+>> You'll see our hands, though.
+
+0:03:43.190,0:03:45.025
+Thank you, Michael.
+
+0:03:45.025,0:03:46.594
+>> It's all right.
+
+0:03:46.594,0:03:48.762
+>> [LAUGH] What?
+
+0:03:48.762,0:03:49.530
+[LAUGH].
+
+0:03:49.530,0:03:50.965
+>> What?[br][LAUGH].
+
+0:03:50.965,0:03:53.100
+>> That was good,[br]that took me back to when I was four.
+
+0:03:53.100,0:03:54.304
+Okay, so.
+
+0:03:54.304,0:03:54.868
+>> Senor Wences.
+
+0:03:54.868,0:03:55.836
+>> Hm?[br]>> It's called Señor Wences.
+
+0:03:55.836,0:03:56.403
+>> Yes, I know.
+
+0:03:56.403,0:03:57.404
+>> Yeah, okay.[br]>> I remember that.
+
+0:03:57.404,0:03:58.112
+>> Mm-hm, yeah.[br]>> I'm not
+
+0:03:58.112,0:03:59.173
+that much younger than you are.
+
+0:03:59.173,0:03:59.940
+>> Little bit.
+
+0:03:59.940,0:04:01.175
+>> Ten, 12 years only.
+
+0:04:01.175,0:04:02.243
+>> No come on.
+
+0:04:02.243,0:04:03.277
+>> You can count gray hairs.
+
+0:04:03.277,0:04:07.036
+Anyway the point is the rest of[br]the semester will go like this.
+
+0:04:07.036,0:04:10.084
+We will talk about supervised learning[br]and a whole series of algorithms.
+
+0:04:10.084,0:04:13.423
+Step back a little bit and talk about[br]the theory behind them, and try to
+
+0:04:13.423,0:04:16.935
+connect theory of machine learning[br]with theory of computing notions, or
+
+0:04:16.935,0:04:18.535
+at least that kind of basic idea.
+
+0:04:18.535,0:04:20.961
+What does it mean to be a hard[br]problem versus an easier problem?
+
+0:04:20.961,0:04:24.273
+Will move into randomized optimization[br]and unsupervised learning where we
+
+0:04:24.273,0:04:27.530
+will talk about all the issues that we[br]brought up here and try to connect them
+
+0:04:27.530,0:04:31.025
+back to some of the things that we did[br]in the section on supervised learning.
+
+0:04:31.025,0:04:33.974
+And then finally, we will spend our[br]time on reinforcement learning.
+
+0:04:33.974,0:04:37.160
+And a generalization of these[br]traditional reinforcement learning,
+
+0:04:37.160,0:04:38.870
+which involves multiple agents.
+
+0:04:38.870,0:04:39.480
+So we'll talk about a little bit of.
+
+0:04:39.480,0:04:40.354
+>> Mm-hm.[br]>> Game theory,
+
+0:04:40.354,0:04:42.210
+which Michael loves to talk about.
+
+0:04:42.210,0:04:42.883
+I love to talk about.
+
+0:04:42.883,0:04:46.074
+And the applications of all the stuff[br]that we've been learning to
+
+0:04:46.074,0:04:48.520
+solving problems of how to[br]actually act in the world?
+
+0:04:48.520,0:04:50.225
+How to build that world[br]out to do something?
+
+0:04:50.225,0:04:51.878
+Or build that agent to play a game or
+
+0:04:51.878,0:04:55.600
+to teach you how to do whatever you,[br]you need to be taught how to do?
+
+0:04:55.600,0:04:58.601
+But at the end of the day,[br]we're going to teach you how to
+
+0:04:58.601,0:05:01.672
+think about data,[br]how to think about algorithms, and
+
+0:05:01.672,0:05:04.571
+how to build artifacts that you know,[br]will learn?
+
+0:05:04.571,0:05:05.970
+>> Let's do this thing.
+
+0:05:05.970,0:05:07.174
+>> Excellent.[br]All right.
+
+0:05:07.174,0:05:08.008
+Well thank you Michael.
+
+0:05:08.008,0:05:08.842
+>> Sure.
+
+0:05:08.842,0:05:13.314
+>> I will see you next time we're[br]in the same place at the same time.

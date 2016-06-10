@@ -1,0 +1,155 @@
+0:00:00.460,0:00:03.520
+Another way of understanding[br]what is knowledge based AI,
+
+0:00:03.520,0:00:08.180
+is to contrast it with the other[br]schools of thought in AI.
+
+0:00:08.180,0:00:10.310
+We can think in terms of a spectrum.
+
+0:00:10.310,0:00:12.860
+On one end of the spectrum, is acting.
+
+0:00:12.860,0:00:15.440
+The other end of[br]the spectrum is thinking.
+
+0:00:15.440,0:00:19.340
+As an example, when you're driving[br]a car, you're acting on the world.
+
+0:00:19.340,0:00:23.220
+But when you are planning what route to[br]take, you're thinking about the world.
+
+0:00:23.220,0:00:24.850
+There is a second dimension for
+
+0:00:24.850,0:00:27.530
+distinguishing between different[br]schools of thought of AI.
+
+0:00:27.530,0:00:32.650
+At one end of the spectrum we can[br]think of AI agents that are optimal.
+
+0:00:34.040,0:00:37.860
+At the other end of the spectrum,[br]we can think of air agents that act and
+
+0:00:37.860,0:00:38.540
+think like humans.
+
+0:00:40.040,0:00:43.870
+Humans are multifunctional,[br]they have very robust intelligence.
+
+0:00:43.870,0:00:47.940
+That intelligence need not be optimal[br]relative to any one task, but
+
+0:00:47.940,0:00:51.810
+it's very general purpose, it works for[br]a very large number of tasks.
+
+0:00:51.810,0:00:54.850
+Were as we can pick up here, agents on[br]the other side which are optimal for
+
+0:00:54.850,0:00:55.690
+a given task.
+
+0:00:56.940,0:00:59.430
+Given these 2 axis we get 4 quadrants.
+
+0:01:00.530,0:01:05.050
+Starting from the top left and going[br]counter clockwise, here are Agents that
+
+0:01:05.050,0:01:11.550
+think optimally, Agents that act[br]optimally, Agents that act like humans.
+
+0:01:11.550,0:01:12.840
+And agents that think like humans.
+
+0:01:14.040,0:01:16.640
+In this particular course[br]in knowledged based AI,
+
+0:01:16.640,0:01:18.630
+we're interested in agents[br]that think like humans.
+
+0:01:19.790,0:01:22.650
+Let us take a few examples[br]to make sure that we
+
+0:01:22.650,0:01:24.370
+understand this four quadrants world.
+
+0:01:25.430,0:01:28.670
+Here are some well known[br]computational techniques.
+
+0:01:28.670,0:01:31.780
+Consider many machine[br]learning algorithms.
+
+0:01:31.780,0:01:35.473
+These algorithms analyse[br]large amounts of data, and
+
+0:01:35.473,0:01:39.100
+determine patterns of[br]the regularity of that data.
+
+0:01:39.100,0:01:43.600
+Well I might think of them as[br]being in the top left quadrant.
+
+0:01:43.600,0:01:46.860
+This is really doing thinking,[br]and they often are optimal, but
+
+0:01:46.860,0:01:49.210
+they're not necessarily human like.
+
+0:01:49.210,0:01:51.050
+Airplane autopilots.
+
+0:01:51.050,0:01:53.530
+They would go under acting optimally.
+
+0:01:53.530,0:01:56.760
+They're suddenly acting in the world,[br]and you want them to act optimally.
+
+0:01:58.640,0:02:02.860
+Improvisational robots that can perhaps[br]dance to the music that you play,
+
+0:02:02.860,0:02:07.860
+they're acting, and they are behaving[br]like humans, dancing to some music.
+
+0:02:07.860,0:02:11.730
+Semantic web, a new generation[br]of web technologies in which
+
+0:02:11.730,0:02:16.200
+the web understands the various pages,[br]and information on it.
+
+0:02:17.500,0:02:20.030
+I might put that under[br]thinking like humans.
+
+0:02:20.030,0:02:20.970
+They are thinking.
+
+0:02:20.970,0:02:22.310
+Not acting in the world.
+
+0:02:22.310,0:02:24.930
+And is much more like humans,[br]than, let's say,
+
+0:02:24.930,0:02:26.600
+some of the other[br]computational techniques here.
+
+0:02:26.600,0:02:29.800
+>> If you're interested in reading[br]some more about these projects,
+
+0:02:29.800,0:02:31.330
+you can check out the course materials.
+
+0:02:31.330,0:02:34.260
+Where we've provided some recent papers[br]on these different computational
+
+0:02:34.260,0:02:35.320
+techniques.
+
+0:02:35.320,0:02:38.270
+There's a lot of cutting edge research[br]going on here at Georgia Tech and
+
+0:02:38.270,0:02:40.780
+elsewhere, on these[br]different technologies.
+
+0:02:40.780,0:02:42.320
+And if,[br]if you really are interested in this,
+
+0:02:42.320,0:02:44.650
+this is something where we're[br]always looking for contributors.

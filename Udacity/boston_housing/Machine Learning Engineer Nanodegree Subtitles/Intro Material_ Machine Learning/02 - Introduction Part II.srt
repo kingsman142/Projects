@@ -1,0 +1,80 @@
+0:00:00.360,0:00:03.120
+So here we are in the heart of Silicon Valley at Google.
+
+0:00:03.120,0:00:05.620
+Machine learning is all over Silicon Valley.
+
+0:00:05.620,0:00:09.140
+>> Yeah, here at Google we're using machinery for, obviously for search, for
+
+0:00:09.140,0:00:12.950
+ranking the little pages that you going to see, for speech recognition, for
+
+0:00:12.950,0:00:17.770
+language translation and of course, for self driving cars.
+
+0:00:17.770,0:00:20.880
+>> One of my favorite examples is a little bit more trivial than that, but
+
+0:00:20.880,0:00:22.394
+I think it's really fun.
+
+0:00:22.394,0:00:25.362
+There is a company in Silicon valley that I actually tell it what clothes I
+
+0:00:25.362,0:00:27.601
+like, and then it'll figure out what my tastes are and
+
+0:00:27.601,0:00:30.394
+it'll sell me new clothes so I don't ever have to go shopping gain.
+
+0:00:30.394,0:00:31.459
+>> It is a machine learning algorithm?
+
+0:00:31.459,0:00:33.350
+>> It is a machine learning algorithm.
+
+0:00:33.350,0:00:34.005
+It is. >> So how did you have to train it?
+
+0:00:34.005,0:00:36.067
+>> It's really good, I didn't have to train it that long.
+
+0:00:36.067,0:00:37.977
+>> Wow. So is there a 10% bonuses?
+
+0:00:37.977,0:00:39.574
+>> I think, there probably, there should be, right?
+
+0:00:39.574,0:00:40.794
+>> [LAUGH] Here we go.
+
+0:00:40.794,0:00:44.420
+So Day, age of big data, yeah?
+
+0:00:44.420,0:00:47.620
+And, there is no company within a 10 mile radius that wouldn't use big data,
+
+0:00:47.620,0:00:50.490
+including Udacity, to optimize its products.
+
+0:00:50.490,0:00:52.220
+>> So, that's what we'll be learning about in this class,
+
+0:00:52.220,0:00:54.360
+there's all kinds of interesting examples here.
+
+0:00:54.360,0:00:58.350
+And, we'll go in great depth into a few questions in this class, but you should
+
+0:00:58.350,0:01:01.060
+always be thinking about interesting problems that you'd like to solve, and
+
+0:01:01.060,0:01:02.550
+how machine learning can help you out there.
+
+0:01:02.550,0:01:04.500
+>> And look, if you do a great job.
+
+0:01:04.500,0:01:06.550
+We do our best to find you a job here in Silicon Valley.
