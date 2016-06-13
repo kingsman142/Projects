@@ -21,54 +21,88 @@ var playlistID;
 var channelID;
 var playlistName = "Testing";
 
+var current = 0;
+var end = 0;
+
+function recursePlaylistExec(tabs){
+    chrome.tabs.executeScript(tabs[0].id, {
+        code: "var current = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuenow'); var end = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuemax'); [current,end]"
+    },  function(results){
+            try{
+                current = results[0][0];
+                end = results[0][1];
+                console.log("current: " + current + "     ;     finish: " + end);
+                if(current == end && end != 0){
+                    current = 0;
+                    end = 0;
+                    newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
+                    console.log("STARTING NEW SONG: " + current + " and " + end + "     ;     new song: " + newURL);
+                    chrome.tabs.update(tabs[0].id, {
+                        url: newURL
+                    }, function(){
+                        setTimeout(function(){ current = 0; end = 0; recursePlaylistExec(tabs); }, 1000);
+                    });
+                } else{
+                    setTimeout(function(){ console.log("Recursing"); recursePlaylistExec(tabs); }, 1000);
+                }
+            } catch(e){
+                console.log(e);
+                current = 0;
+                end = 0;
+                newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
+                console.log("STARTING NEW SONG AFTER ERROR: " + current + " and " + end + "     ;     new song: " + newURL);
+                chrome.tabs.update(tabs[0].id, {
+                    url: newURL
+                }, function(){
+                    setTimeout(function(){ current = 0; end = 0; recursePlaylistExec(tabs); }, 1000);
+                });
+            }
+        }
+    );
+}
+
 function fetchRandomSong(){
     var rand = Math.floor(Math.random() * booksID.length);
     return booksID[rand];
 }
 
 //Main function to run the program
-function getBookmarks(){
-    chrome.bookmarks.getTree(function(bookmarks){
-        var input = window.document.getElementById("foldersForm").value;
-        parseFolders(input);
+function startPlaylist(bookmarksId, tabs){
+    booksID = bookmarksId;
+    recursePlaylistExec(tabs);
 
-        chrome.windows.create({
-            url: "https://www.youtube.com/watch?v=" + fetchRandomSong(),
-            type: 'popup',
-            width: 700,
-            height: 600,
-        }, function(window){
-            chrome.tabs.query({
-                windowId: window.id
-            }, function(tabs){
-                newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
-                console.log("NEW SONG: " + newURL);
-                chrome.tabs.update(tabs[0].id, {
-                    url: newURL
-                }, function(){
-                    var bgPage = chrome.extension.getBackgroundPage();
-                    bgPage.startPlaylist(booksID, tabs);
-                });
-            });
-        });
-
-        for(var j = 0; j < folders.length; j++){
-            search_for_title(bookmarks, folders[j], null); //Collect all bookmarks in the "Music" folder and put them into the books array
-        }
-
-        console.log("books: " + books.length); //Print out the length of the books array
-
-        gapi.client.setApiKey('AIzaSyDUDozQF2xXJd7nybrEhVYgWUsSA4BREWw');
-        gapi.client.load('youtube', 'v3', function(){
-            gapi.auth.authorize({
-                client_id: "323168009404-b01satic25ad9nun2e2gd68e2j16u5oe.apps.googleusercontent.com",
-                immediate: true,
-                scope: "https://www.googleapis.com/auth/youtube.force-ssl"
+    /*chrome.windows.create({
+        url: "https://www.youtube.com/watch?v=" + fetchRandomSong(),
+        type: 'popup',
+        width: 700,
+        height: 600,
+    }, function(window){
+        chrome.tabs.query({
+            windowId: window.id
+        }, function(tabs){
+            newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
+            console.log("NEW SONG: " + newURL);
+            chrome.tabs.update(tabs[0].id, {
+                url: newURL
             }, function(){
-                //createPlaylist();
+                booksID = bookmarksId;
+                recursePlaylistExec(tabs);
             });
         });
-    });
+    });*/
+
+    console.log("books: " + books.length); //Print out the length of the books array
+
+    /*gapi.client.setApiKey('AIzaSyDUDozQF2xXJd7nybrEhVYgWUsSA4BREWw');
+    gapi.client.load('youtube', 'v3', function(){
+        gapi.auth.authorize({
+            client_id: "323168009404-b01satic25ad9nun2e2gd68e2j16u5oe.apps.googleusercontent.com",
+            immediate: true,
+            scope: "https://www.googleapis.com/auth/youtube.force-ssl"
+        }, function(){
+            //createPlaylist();
+        });
+    });*/
 }
 
 //Create a public playlist.
@@ -132,9 +166,6 @@ function addToPlaylist(id, startPos, endPos, k, failures) {
         });
         if(request != undefined){
             request.execute(function(response){
-                //console.log("object: " + response['kind'] + ", adding id: " + id + " to playlist " + playlistID);
-                //console.log(response);
-                //console.log(response.code);
                 if(response.code == 404 || response.code == 403) failures++;
                 var successRate = ((k-failures)/k)*100.0;
                 var failureRate = (failures/k)*100.0;
@@ -223,10 +254,4 @@ function parseFolders(names){
     }
 
     folders[size] = currName;
-}
-
-//Calls the main program into action once the window loads and the user
-//clicks the "Get Bookmarks!" button
-window.onload = function(){
-    window.document.getElementById("bookmarksButton").addEventListener('click', getBookmarks, true);
 }

@@ -7,10 +7,13 @@
 
   "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'",
 
+  "background": {
+      "scripts": ["background.js"]
+  },
   "browser_action": {
     "default_icon": "extensionLogo.png",
     "default_popup": "popup.html",
-    "default_title": "Click here!"
+    "default_title": "Playlist Generator"
   },
   "permissions": [
     "activeTab",

@@ -13,6 +13,9 @@ import cv2
 import time
 
 from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LinearRegression
 from pandas import DataFrame
 from pandas import read_csv
 from sklearn.svm import SVC
@@ -21,8 +24,7 @@ imagesTrain = []
 imagesTest = []
 
 drivers = DataFrame(read_csv("driver_imgs_list.csv/driver_imgs_list.csv"))
-driversHead = drivers.head(5000)
-#print driversHead
+driversHead = drivers.head(1500)
 
 imageFilenames = []
 imageClasses = []
@@ -69,62 +71,71 @@ print "Total time to reshape test images array: {}".format(timer)
     
 classArr = np.array(classArr)
 
-deg = 4
-gam = .6
-SVMparams = {'kernel_type': cv2.SVM_LINEAR, 'degree': deg, 'gamma': gam}
+deg = 8
+gam = 1
+SVMparams = {'kernel_type': cv2.SVM_POLY, 'degree': deg, 'gamma': gam}
 
+#
 #Create the SVM
+#
 timerStart = time.time()
-SVM = cv2.SVM(trainData = imagesArrTrain, responses = classArr, params = SVMparams)
-skSVM = SVC(kernel = 'linear', degree = deg, gamma = gam)
+#gsb = GaussianNB()
+#SVM = cv2.SVM(trainData = imagesArrTrain, responses = classArr, params = SVMparams)
+skSVM = SVC(kernel = 'rbf', degree = deg, gamma = gam)
 timerEnd = time.time()
 timer = timerEnd - timerStart
 print "Total time to create SVM: {}".format(timer)
 
-for i in range(0, 5):
-    #Train the OpenCV SVM
-    timerStart = time.time()
-    SVM.train(trainData = imagesArrTrain[i*700:(i+1)*700-1], responses = classArr[i*700:(i+1)*700-1], params = SVMparams)
-    timerEnd = time.time()
-    timer = timerEnd - timerStart
-    print "Total OpenCV training time: {}".format(timer)
+#Train the OpenCV SVM
+timerStart = time.time()
+#SVM.train(trainData = imagesArrTrain[i*700:(i+1)*700-1], responses = classArr[i*700:(i+1)*700-1], params = SVMparams)
+timerEnd = time.time()
+timer = timerEnd - timerStart
+print "Total OpenCV training time: {}".format(timer)
 
-for i in range(0, 5):
-    #Train the SKLearn SVM
-    timerStart = time.time()
-    skSVM.fit(imagesArrTrain[i*700:(i+1)*700-1], classArr[i*700:(i+1)*700-1])
-    timerEnd = time.time()
-    timer = timerEnd - timerStart
-    print "Total SKLearn training time: {}".format(timer)
+#Train the SKLearn SVM
+timerStart = time.time()
+skSVM.fit(imagesArrTrain, classArr)
+timerEnd = time.time()
+timer = timerEnd - timerStart
+print "Total SKLearn training time: {}".format(timer)
 
+#
 #Test the OpenCV SVM
+#
 timerStart = time.time()
 predictions = np.array([])
-predictions = SVM.predict_all(samples = imagesArrTest, results = predictions)
+#predictions = SVM.predict_all(samples = imagesArrTest, results = predictions)
 timerEnd = time.time()
 timer = timerEnd - timerStart
 print "Total OpenCV testing time: {}".format(timer)
 
+#
 #Test the SKLearn SVM
+#
 timerStart = time.time()
 skPredictions = skSVM.predict(imagesArrTest)
 timerEnd = time.time()
 timer = timerEnd - timerStart
 print "Total SKLearn testing time: {}".format(timer)
 
+#
 #Save the data to text files
+#
 '''timerStart = time.time()
 np.savetxt("testImages.txt", imagesArrTest, newline="\n")
 np.savetxt("testPredictions.txt", predictions, newline="\n")
 timerEnd = time.time()
 timer = timerEnd - timerStart
 print "Total time to save data: {}".format(timer)'''
-for i in range(0, 100):
-    print "OpenCV: {}".format(predictions[i])
+#for i in range(0, 100):
+    #print "OpenCV: {}".format(predictions[i])
 for i in range(0, 100):
     print "SKLearn: {}".format(skPredictions[i])
     
+#
 #Check accuracy
+#
 '''timerStart = time.time()
 mask = predictions==classArr
 correct = np.count_nonzero(mask)
@@ -136,8 +147,8 @@ correctTraining = [5, 2, 4, 6, 3, 3, 5, 5, 1, 1, 2, 4, 5, 6, 5, 6, 0, 0, 0, 2, 3
 openCorrect = 0
 skCorrect = 0
 for i in range(0, 100):
-    if correctTraining[i] == predictions[i]:
-        openCorrect += 1
+    #if correctTraining[i] == predictions[i]:
+        #openCorrect += 1
     if correctTraining[i] == skPredictions[i]:
         skCorrect += 1
 print "SKCorrect: {}".format(skCorrect)
