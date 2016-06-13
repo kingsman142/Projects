@@ -5,10 +5,8 @@ I gained inspiration for this project from a problem of mine that I recognized:
 I had too many Youtube bookmarks of my favorite songs, yet no way to play them all efficiently;
 so, my solution was to make my own playlist so I can enjoy literally hundreds of hours of music (turns out I had ~1860 bookmarks, wow).
 This program utilizes JavaScript to create a chrome extension, accessing a user's
-bookmarks on the current computer. These bookmarks are then stored, and the Youtube API
-is used to create a Youtube playlist from those bookmarks so they can easily be listened
-to at any given time (still working on this part). Future features may include access to
-the Spotify API in order to sync a user's Spotify songs and their Youtube bookmarks.
+bookmarks on the current computer. These bookmarks are then stored, and Google Chrome API
+is used to execute scripts on a new chrome tab, which loops through the bookmarks.
 
 Future ideas:
 Hook up to Spotify API
@@ -17,9 +15,6 @@ Hook up to Spotify API
 var books = [];
 var booksID = [];
 var folders = [];
-var playlistID;
-var channelID;
-var playlistName = "Testing";
 
 function fetchRandomSong(){
     var rand = Math.floor(Math.random() * booksID.length);
@@ -35,14 +30,13 @@ function getBookmarks(){
         chrome.windows.create({
             url: "https://www.youtube.com/watch?v=" + fetchRandomSong(),
             type: 'popup',
-            width: 700,
-            height: 600,
+            width: 465,
+            height: 475,
         }, function(window){
             chrome.tabs.query({
                 windowId: window.id
             }, function(tabs){
                 newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
-                console.log("NEW SONG: " + newURL);
                 chrome.tabs.update(tabs[0].id, {
                     url: newURL
                 }, function(){
@@ -55,94 +49,7 @@ function getBookmarks(){
         for(var j = 0; j < folders.length; j++){
             search_for_title(bookmarks, folders[j], null); //Collect all bookmarks in the "Music" folder and put them into the books array
         }
-
-        console.log("books: " + books.length); //Print out the length of the books array
-
-        gapi.client.setApiKey('AIzaSyDUDozQF2xXJd7nybrEhVYgWUsSA4BREWw');
-        gapi.client.load('youtube', 'v3', function(){
-            gapi.auth.authorize({
-                client_id: "323168009404-b01satic25ad9nun2e2gd68e2j16u5oe.apps.googleusercontent.com",
-                immediate: true,
-                scope: "https://www.googleapis.com/auth/youtube.force-ssl"
-            }, function(){
-                //createPlaylist();
-            });
-        });
     });
-}
-
-//Create a public playlist.
-function createPlaylist() {
-    //Create the XHR (XMLHttpRequest) for the call
-    var request = gapi.client.youtube.playlists.insert({
-        part: 'snippet,status',
-        resource:{
-            snippet:{
-                title: playlistName,
-                description: 'A playlist storing your favorite songs! \nSize: ' + booksID.length,
-            },
-            status:{
-                privacyStatus: 'public'
-            }
-        }
-    });
-    //Perform the XHR from above
-    request.execute(function(response) {
-        var result = response.result;
-        var details = {
-            kind: 'youtube#video',
-            videoId: 'OcE8YWdGtnI'
-        }
-        if(result){
-            playlistID = result.id;
-            console.log("PLAYLIST ID: " + playlistID);
-            addToPlaylist(booksID[0], undefined, undefined, 0, 0);
-        }
-    });
-}
-
-//Add a video to a playlist. The "startPos" and "endPos" values let you
-//start and stop the video at specific times when the video is played as
-//part of the playlist.
-function addToPlaylist(id, startPos, endPos, k, failures) {
-    var details = {
-        videoId: id,
-        kind: 'youtube#video'
-    }
-    if (startPos != undefined) {
-        details['startAt'] = startPos;
-    }
-    if (endPos != undefined) {
-        details['endAt'] = endPos;
-    }
-    var keepGoing = false;
-    var request = undefined;
-    do{
-        request = gapi.client.youtube.playlistItems.insert({
-            part: 'snippet',
-            resource:{
-                snippet:{
-                    playlistId: playlistID,
-                    resourceId:{
-                        kind: 'youtube#video',
-                        videoId: id
-                    }
-                }
-            }
-        });
-        if(request != undefined){
-            request.execute(function(response){
-                //console.log("object: " + response['kind'] + ", adding id: " + id + " to playlist " + playlistID);
-                //console.log(response);
-                //console.log(response.code);
-                if(response.code == 404 || response.code == 403) failures++;
-                var successRate = ((k-failures)/k)*100.0;
-                var failureRate = (failures/k)*100.0;
-                console.log(k + " / " + booksID.length + " completed: " + (k-failures) + "/" + k + " successes (" + successRate + ") and " + failures + "/" + k + " failures (" + failureRate + ")");
-                if(k < booksID.length-1) addToPlaylist(booksID[k+1], undefined, undefined, k+1, failures);
-            });
-        }
-    } while(keepGoing);
 }
 
 //Traverses entire list of bookmarks to find all the folders containing music (specified by user)
@@ -226,7 +133,7 @@ function parseFolders(names){
 }
 
 //Calls the main program into action once the window loads and the user
-//clicks the "Get Bookmarks!" button
+//clicks the "Make playlist!" button
 window.onload = function(){
     window.document.getElementById("bookmarksButton").addEventListener('click', getBookmarks, true);
 }
