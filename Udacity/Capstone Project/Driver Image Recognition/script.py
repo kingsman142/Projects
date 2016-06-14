@@ -24,7 +24,7 @@ imagesTrain = []
 imagesTest = []
 
 drivers = DataFrame(read_csv("driver_imgs_list.csv/driver_imgs_list.csv"))
-driversHead = drivers.head(1500)
+driversHead = drivers.head(2000)
 
 imageFilenames = []
 imageClasses = []
@@ -71,8 +71,8 @@ print "Total time to reshape test images array: {}".format(timer)
     
 classArr = np.array(classArr)
 
-deg = 4
-gam = .1
+deg = 3
+gam = .01
 SVMparams = {'kernel_type': cv2.SVM_POLY, 'degree': deg, 'gamma': gam}
 
 #

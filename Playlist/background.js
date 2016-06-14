@@ -15,11 +15,21 @@ Hook up to Spotify API
 var books = [];
 var booksID = [];
 var folders = [];
+var removeScrollbars = true;
 
 var current = 0;
 var end = 0;
 
 function recursePlaylistExec(tabs){
+    if(removeScrollbars){
+        chrome.tabs.executeScript(tabs[0].id, {
+            code: "document.getElementsByTagName('html')[0].style.overflow = 'hidden';"
+        }, function(){
+            console.log("Success");
+            removeScrollbars = false;
+        });
+    }
+
     chrome.tabs.executeScript(tabs[0].id, {
         code: "var current = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuenow'); var end = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuemax'); [current,end]"
     },  function(results){
@@ -35,13 +45,17 @@ function recursePlaylistExec(tabs){
                     chrome.tabs.update(tabs[0].id, {
                         url: newURL
                     }, function(){
-                        setTimeout(function(){ current = 0; end = 0; recursePlaylistExec(tabs); }, 1000);
+                        setTimeout(function(){
+                            current = 0;
+                            end = 0;
+                            removeScrollbars = true;
+                            recursePlaylistExec(tabs);
+                        }, 1000);
                     });
                 } else{
                     setTimeout(function(){ console.log("Recursing"); recursePlaylistExec(tabs); }, 1000);
                 }
             } catch(e){
-                console.log(e);
                 current = 0;
                 end = 0;
                 newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
@@ -49,7 +63,14 @@ function recursePlaylistExec(tabs){
                 chrome.tabs.update(tabs[0].id, {
                     url: newURL
                 }, function(){
-                    setTimeout(function(){ current = 0; end = 0; recursePlaylistExec(tabs); }, 1000);
+                    setTimeout(
+                        function(){
+                            current = 0;
+                            end = 0;
+                            removeScrollbars = true;
+                            recursePlaylistExec(tabs);
+                        },
+                    1000);
                 });
             }
         }
@@ -64,5 +85,11 @@ function fetchRandomSong(){
 //Main function to run the program
 function startPlaylist(bookmarksId, tabs){
     booksID = bookmarksId;
+    setTimeout(function(){
+        document.getElementsByTagName("HTML")[0].style.overflow = "hidden";
+    }, 4000);
+    //$("html").style.overflow = "hidden";
+    //document.getElementById("html").style.overflow = "scroll";
+    //document.getElementsByTagName("HTML")[0].style.overflow = "hidden";
     recursePlaylistExec(tabs);
 }
