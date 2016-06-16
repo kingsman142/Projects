@@ -24,7 +24,7 @@ imagesTrain = []
 imagesTest = []
 
 drivers = DataFrame(read_csv("driver_imgs_list.csv/driver_imgs_list.csv"))
-driversHead = drivers.head(2000)
+driversHead = drivers.head(3000)
 
 imageFilenames = []
 imageClasses = []
@@ -72,7 +72,7 @@ print "Total time to reshape test images array: {}".format(timer)
 classArr = np.array(classArr)
 
 deg = 3
-gam = .01
+gam = .001
 SVMparams = {'kernel_type': cv2.SVM_POLY, 'degree': deg, 'gamma': gam}
 
 #
@@ -81,7 +81,7 @@ SVMparams = {'kernel_type': cv2.SVM_POLY, 'degree': deg, 'gamma': gam}
 timerStart = time.time()
 #gsb = GaussianNB()
 #SVM = cv2.SVM(trainData = imagesArrTrain, responses = classArr, params = SVMparams)
-skSVM = SVC(kernel = 'rbf', degree = deg, gamma = gam)
+skSVM = SVC(kernel = 'poly', degree = deg, gamma = gam)
 timerEnd = time.time()
 timer = timerEnd - timerStart
 print "Total time to create SVM: {}".format(timer)

@@ -117,19 +117,8 @@ function findWord(word, url){
 //and parse every folder name, which is separated
 //by a comma.
 function parseFolders(names){
-    var currName = "";
-    var size = 0;
-
-    for(var i = 0; i < names.length; i++){
-        if(names[i] == ","){
-            folders[size++] = currName;
-            currName = "";
-        } else{
-            currName += names[i];
-        }
-    }
-
-    folders[size] = currName;
+    folders = names.split(",");
+    console.log(folders);
 }
 
 //Calls the main program into action once the window loads and the user
