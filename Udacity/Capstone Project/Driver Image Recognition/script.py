@@ -71,8 +71,8 @@ print "Total time to reshape test images array: {}".format(timer)
     
 classArr = np.array(classArr)
 
-deg = 3
-gam = .001
+deg = 8
+gam = .000001
 SVMparams = {'kernel_type': cv2.SVM_POLY, 'degree': deg, 'gamma': gam}
 
 #
