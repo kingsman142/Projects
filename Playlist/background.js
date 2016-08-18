@@ -16,6 +16,7 @@ var books = [];
 var booksID = [];
 var folders = [];
 var removeScrollbars = true;
+var availableSongs = [];
 
 var current = 0;
 var end = 0;
@@ -76,8 +77,19 @@ function recursePlaylistExec(tabs){
 }
 
 function fetchRandomSong(){
-    var rand = Math.floor(Math.random() * booksID.length);
-    return booksID[rand];
+    var rand = Math.floor(Math.random() * availableSongs.length);
+    var newSongIndex = availableSongs[rand];
+    availableSongs = availableSongs.splice(rand, 1);
+    if(availableSongs.length <= 2){
+        populateAvailableSongs();
+    }
+    return booksID[newSongIndex];
+}
+
+function populateAvailableSongs(){
+    for(var i = 0; i < booksID.length; i++){
+        availableSongs.push(i);
+    }
 }
 
 //Main function to run the program

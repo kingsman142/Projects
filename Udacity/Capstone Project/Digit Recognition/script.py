@@ -73,8 +73,9 @@ print "Total time to reshape testing data: {}".format(timer)
 
 timerStart = time.time()
 deg = 1
-gam = .5
-skSVM = SVC(kernel = 'poly', degree = deg, gamma = gam)
+gam = 10
+c_value = 50
+skSVM = SVC(kernel = 'linear', degree = deg, gamma = gam, C = c_value)
 timerEnd = time.time()
 timer = timerEnd - timerStart
 print "Total time to create SVM: {}".format(timer)
