@@ -47,22 +47,24 @@ function getBookmarks(){
         });
 
         for(var j = 0; j < folders.length; j++){
-            search_for_title(bookmarks, folders[j], null); //Collect all bookmarks in the "Music" folder and put them into the books array
+            searchForTitle(bookmarks, folders[j], null); //Collect all bookmarks in the "Music" folder and put them into the books array
         }
+
+        console.log("===Total # of bookmarks: " + books.length + "===");
     });
 }
 
 //Traverses entire list of bookmarks to find all the folders containing music (specified by user)
 //and then adds every Youtube bookmark to the books array
-function search_for_title(bookmarks, title, parent){
+function searchForTitle(bookmarks, title, parent){
     if(parent == null){ //First find the parent folder
         for(var i = 0; i < bookmarks.length; i++){ //Loop through all bookmarks
             if(bookmarks[i].title == title){ //If the bookmark title matches the title of the folder we're looking for ("Music"), proceed
-                search_for_title(bookmarks[i].children, null, bookmarks[i].id); //Loop through all the bookmarks in the folder that we found
+                searchForTitle(bookmarks[i].children, null, bookmarks[i].id); //Loop through all the bookmarks in the folder that we found
                 return null;
             } else{
                 if(bookmarks[i].children){ //If the bookmark is a folder, it has children
-                    search_for_title(bookmarks[i].children, title, parent);
+                    searchForTitle(bookmarks[i].children, title, parent);
                 }
             }
         }
@@ -76,6 +78,7 @@ function search_for_title(bookmarks, title, parent){
             }
         }
 
+        console.log("-----Folder: " + parent + " contains " + bookmarks.length + " songs-----");
         return null;
     }
 }

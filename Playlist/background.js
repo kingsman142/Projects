@@ -79,9 +79,11 @@ function recursePlaylistExec(tabs){
 function fetchRandomSong(){
     var rand = Math.floor(Math.random() * availableSongs.length);
     var newSongIndex = availableSongs[rand];
-    availableSongs = availableSongs.splice(rand, 1);
+    availableSongs.splice(rand, 1);
+    console.log("Chose song at index: " + newSongIndex + ", ID: " + booksID[newSongIndex] + ", available songs: " + availableSongs.length);
     if(availableSongs.length <= 2){
         populateAvailableSongs();
+        console.log("Resetting list of songs!");
     }
     return booksID[newSongIndex];
 }
