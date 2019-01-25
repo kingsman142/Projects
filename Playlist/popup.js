@@ -10,18 +10,19 @@ is used to execute scripts on a new chrome tab, which loops through the bookmark
 
 Future ideas:
 Hook up to Spotify API
+Machine. Learning. ;)
 */
 
-var books = [];
 var booksID = [];
 var folders = [];
+var bannedSongs = []; // Songs that are unavailable in that country or are dead links
 
 function fetchRandomSong(){
     var rand = Math.floor(Math.random() * booksID.length);
     return booksID[rand];
 }
 
-//Main function to run the program
+// Main function to run the program
 function getBookmarks(){
     chrome.bookmarks.getTree(function(bookmarks){
         var input = window.document.getElementById("foldersForm").value;
@@ -47,34 +48,33 @@ function getBookmarks(){
         });
 
         for(var j = 0; j < folders.length; j++){
-            searchForTitle(bookmarks, folders[j], null); //Collect all bookmarks in the "Music" folder and put them into the books array
+            searchForTitle(bookmarks, folders[j], null); // Collect all bookmarks in the "Music" folder and put them into the booksID array
         }
 
-        console.log("===Total # of bookmarks: " + books.length + "===");
+        console.log("===Total # of bookmarks: " + booksID.length + "===");
     });
 }
 
-//Traverses entire list of bookmarks to find all the folders containing music (specified by user)
-//and then adds every Youtube bookmark to the books array
+// Traverses entire list of bookmarks to find all the folders containing music (specified by user)
+// and then adds every Youtube bookmark to the booksID array
 function searchForTitle(bookmarks, title, parent){
-    if(parent == null){ //First find the parent folder
-        for(var i = 0; i < bookmarks.length; i++){ //Loop through all bookmarks
-            if(bookmarks[i].title == title){ //If the bookmark title matches the title of the folder we're looking for ("Music"), proceed
-                searchForTitle(bookmarks[i].children, null, bookmarks[i].id); //Loop through all the bookmarks in the folder that we found
+    if(parent == null){ // First find the parent folder
+        for(var i = 0; i < bookmarks.length; i++){ // Loop through all bookmarks
+            if(bookmarks[i].title == title){ // If the item title matches the title of the folder we're looking for ("Music"), proceed
+                searchForTitle(bookmarks[i].children, null, bookmarks[i].id); // Loop through all the bookmarks in the folder that we found
                 return null;
             } else{
-                if(bookmarks[i].children){ //If the bookmark is a folder, it has children
+                if(bookmarks[i].children){ // If the item is a folder, it has children
                     searchForTitle(bookmarks[i].children, title, parent);
                 }
             }
         }
-    } else if(title == null){ //Parent folder is found, now just traverse the bookmarks within
-        var filled = books.length;
+    } else if(title == null){ // Parent folder is found, now just traverse the bookmarks within
 
         for(var i = 0; i < bookmarks.length; i++){
             if(findWord("youtube.com", bookmarks[i].url)){
-                books[filled] = bookmarks[i].title; //Assign all the bookmarks into the books array
-                booksID[filled++] = findVideoID(bookmarks[i].url); //Find the video ID of the video and add it to the bookmarks ID array
+                var videoID = findVideoID(bookmarks[i].url); // Find the video ID of the video and add it to the bookmarks ID array
+                if(videoId != null) booksID.push(videoID); // Find the video ID of the video and add it to the bookmarks ID array
             }
         }
 
@@ -83,42 +83,26 @@ function searchForTitle(bookmarks, title, parent){
     }
 }
 
-//Takes a Youtube url and returns the video ID.
+// Takes a Youtube url and returns the video ID.
 function findVideoID(url){
-    var startSearch = false;
-    var videoID = "";
-    for(var i = 1; i < url.length; i++){
-        if(startSearch) videoID += url[i];
-
-        if(url[i] == '=' && url[i-1] == 'v') startSearch = true;
-    }
+    var videoIDIdentifier = "v=";
+    var index = url.indexOf(videoIDIdentifier); // search for the index of "v="
+    if(index == -1) return null;
+    var idBeginIndex = index + videoIDIdentifier.length; // this the index that the video ID begins in the URL
+    var videoID = url.substring(idBeginIndex); // get the video ID
     return videoID;
 }
 
-//Main purpose is to take a url and try to find
-//the word "youtube" in it to make sure it's a youtube video
+// Main purpose is to take a url and try to find
+// the word "youtube" in it to make sure it's a youtube video
 function findWord(word, url){
-    var matches = 0;
-
-    if(word == undefined) return false;
-
-    for(var i = 0; i < url.length-word.length; i++){
-        if(url[i] == word[matches]){
-            matches++;
-        } else{
-            i = i - matches;
-            matches = 0;
-        }
-
-        if(matches == word.length) return true;
-    }
-
-    return false;
+    var regex = new RegExp(word, "g");
+    return regex.test(url);
 }
 
-//Take the input of the folders from the HTML form
-//and parse every folder name, which is separated
-//by a comma.
+// Take the input of the folders from the HTML form
+// and parse every folder name, which is separated
+// by a comma.
 function parseFolders(names){
     folders = names.split(",");
     console.log(folders);

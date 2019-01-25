@@ -10,6 +10,7 @@ is used to execute scripts on a new chrome tab, which loops through the bookmark
 
 Future ideas:
 Hook up to Spotify API
+Machine. Learning. ;)
 */
 
 var books = [];
@@ -17,6 +18,7 @@ var booksID = [];
 var folders = [];
 var removeScrollbars = true;
 var availableSongs = [];
+var bannedSongs = [];
 
 var current = 0;
 var end = 0;
@@ -36,19 +38,19 @@ function recursePlaylistExec(tabs){
             try{
                 current = results[0][0];
                 end = results[0][1];
-                if(current == end && end != 0){
+                if(current == end && end != 0){ // marks the end of the song
                     current = 0;
                     end = 0;
                     newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
                     chrome.tabs.update(tabs[0].id, {
                         url: newURL
                     }, function(){
-                        setTimeout(function(){
+                        setTimeout(function(){ // navigate to the new song
                             current = 0;
                             end = 0;
                             removeScrollbars = true;
                             recursePlaylistExec(tabs);
-                        }, 1000);
+                        }, 1000); // wait at least 1000 sounds before executing this code because we don't want to just refresh instantly
                     });
                 } else{
                     setTimeout(function(){
@@ -88,13 +90,20 @@ function fetchRandomSong(){
     return booksID[newSongIndex];
 }
 
+function removeBannedSongs(){
+    const setDifference = (a, b) => new Set([...a].filter(x => !b.has(x)));
+    var goodSongs = setDifference(booksID, bannedSongs); // remove the banned songs from the available songs
+    booksID = Array.from(goodSongs);
+}
+
 function populateAvailableSongs(){
+    removeBannedSongs();
     for(var i = 0; i < booksID.length; i++){
         availableSongs.push(i);
     }
 }
 
-//Main function to run the program
+// Main function to run the program
 function startPlaylist(bookmarksId, tabs){
     booksID = bookmarksId;
     recursePlaylistExec(tabs);
