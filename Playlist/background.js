@@ -9,8 +9,11 @@ bookmarks on the current computer. These bookmarks are then stored, and Google C
 is used to execute scripts on a new chrome tab, which loops through the bookmarks.
 
 Future ideas:
-Hook up to Spotify API
-Machine. Learning. ;)
+1) Hook up to Spotify API
+2) Fix the scrollbars so they are removed faster
+3) Add storage to the extension so banned songs are transferred from each session
+4) Separate out songs by types/genres and mood for the user
+*) Machine. Learning. ;)
 */
 
 var books = [];
@@ -18,30 +21,48 @@ var booksID = [];
 var folders = [];
 var removeScrollbars = true;
 var availableSongs = [];
-var bannedSongs = [];
+var bannedSongs = new Set();
+var currentVideoID = null;
 
 var current = 0;
 var end = 0;
+
+// Main function to run the program
+function startPlaylist(bookmarksId, tabs){
+    booksID = bookmarksId;
+    recursePlaylistExec(tabs);
+}
 
 function recursePlaylistExec(tabs){
     if(removeScrollbars){
         chrome.tabs.executeScript(tabs[0].id, {
             code: "document.getElementsByTagName('html')[0].style.overflow = 'hidden';"
         }, function(){
+            console.log("removing scrollbars");
             removeScrollbars = false;
         });
     }
 
     chrome.tabs.executeScript(tabs[0].id, {
-        code: "var current = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuenow'); var end = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuemax'); [current,end]"
+        code: "var current = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuenow'); var end = document.getElementsByClassName('ytp-progress-bar')[0].getAttribute('aria-valuemax'); var availability = document.getElementsByClassName('reason').length; [current, end, availability]"
     },  function(results){
+            if(chrome.runtime.lastError) return;
+            
             try{
-                current = results[0][0];
-                end = results[0][1];
-                if(current == end && end != 0){ // marks the end of the song
+                current = results[0][0]; // current time in the player
+                end = results[0][1]; // end time of the player
+                availability = results[0][2]; // check if the player has any HTML reasons with "reasons" why a video is unavailable
+
+                if((current == end && end != 0) || availability >= 1){ // marks the end of the song OR the video is unavailable
+                    if(availability.length >= 1 && currentVideoID != null){
+                        bannedSongs.add(currentVideoID);
+                        currentVideoID = null;
+                    }
+
                     current = 0;
                     end = 0;
-                    newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
+                    currentVideoID = fetchRandomSong();
+                    newURL = "https://www.youtube.com/watch?v=" + currentVideoID;
                     chrome.tabs.update(tabs[0].id, {
                         url: newURL
                     }, function(){
@@ -50,17 +71,19 @@ function recursePlaylistExec(tabs){
                             end = 0;
                             removeScrollbars = true;
                             recursePlaylistExec(tabs);
-                        }, 1000); // wait at least 1000 sounds before executing this code because we don't want to just refresh instantly
+                        }, 2000); // wait at least 1000 sounds before executing this code because we don't want to just refresh instantly
                     });
                 } else{
                     setTimeout(function(){
                         recursePlaylistExec(tabs);
-                    }, 1000);
+                    }, 2000);
                 }
             } catch(e){
                 current = 0;
                 end = 0;
-                newURL = "https://www.youtube.com/watch?v=" + fetchRandomSong();
+                console.log(e);
+                currentVideoID = fetchRandomSong();
+                newURL = "https://www.youtube.com/watch?v=" + currentVideoID;
                 chrome.tabs.update(tabs[0].id, {
                     url: newURL
                 }, function(){
@@ -71,7 +94,7 @@ function recursePlaylistExec(tabs){
                             removeScrollbars = true;
                             recursePlaylistExec(tabs);
                         },
-                    1000);
+                    2000);
                 });
             }
         }
@@ -91,8 +114,7 @@ function fetchRandomSong(){
 }
 
 function removeBannedSongs(){
-    const setDifference = (a, b) => new Set([...a].filter(x => !b.has(x)));
-    var goodSongs = setDifference(booksID, bannedSongs); // remove the banned songs from the available songs
+    var goodSongs = booksID.filter(x => !bannedSongs.has(x));
     booksID = Array.from(goodSongs);
 }
 
@@ -101,10 +123,4 @@ function populateAvailableSongs(){
     for(var i = 0; i < booksID.length; i++){
         availableSongs.push(i);
     }
-}
-
-// Main function to run the program
-function startPlaylist(bookmarksId, tabs){
-    booksID = bookmarksId;
-    recursePlaylistExec(tabs);
 }

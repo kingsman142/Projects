@@ -5,12 +5,15 @@ I gained inspiration for this project from a problem of mine that I recognized:
 I had too many Youtube bookmarks of my favorite songs, yet no way to play them all efficiently;
 so, my solution was to make my own playlist so I can enjoy literally hundreds of hours of music (turns out I had ~1860 bookmarks, wow).
 This program utilizes JavaScript to create a chrome extension, accessing a user's
-bookmarks on the current computer. These bookmarks are then stored, and Google Chrome API
+bookmarks on the current computer. These bookmarks are then stored, and the Google Chrome API
 is used to execute scripts on a new chrome tab, which loops through the bookmarks.
 
 Future ideas:
-Hook up to Spotify API
-Machine. Learning. ;)
+1) Hook up to Spotify API
+2) Fix the scrollbars so they are removed faster
+3) Add storage to the extension so banned songs are transferred from each session
+4) Separate out songs by types/genres and mood for the user
+*) Machine. Learning. ;)
 */
 
 var booksID = [];
@@ -74,7 +77,7 @@ function searchForTitle(bookmarks, title, parent){
         for(var i = 0; i < bookmarks.length; i++){
             if(findWord("youtube.com", bookmarks[i].url)){
                 var videoID = findVideoID(bookmarks[i].url); // Find the video ID of the video and add it to the bookmarks ID array
-                if(videoId != null) booksID.push(videoID); // Find the video ID of the video and add it to the bookmarks ID array
+                if(videoID != null) booksID.push(videoID); // Find the video ID of the video and add it to the bookmarks ID array
             }
         }
 
